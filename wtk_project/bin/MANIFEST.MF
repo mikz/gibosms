@@ -1,0 +1,8 @@
+MIDlet-1: SMS, /pics/SMS.png, SMS
+MIDlet-Description: Odesila SMS pres internetove SMS brany
+MIDlet-Info-URL: http://www.gibosms.cz
+MIDlet-Name: Gibo SMS
+MIDlet-Vendor: Josef Kyrian
+MIDlet-Version: 2.10
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-1.0
