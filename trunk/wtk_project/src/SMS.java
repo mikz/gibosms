@@ -2,10 +2,7 @@ import javax.microedition.lcdui.*;
 import javax.microedition.midlet.*;
 import javax.microedition.io.*;
 import java.io.*;
-import java.util.TimerTask;
-import java.util.Timer;
-import java.util.Vector;
-import java.util.Date;
+import java.util.*;
 
 public class SMS extends MIDlet implements CommandListener {
 	private final String _VERSION = "2.11";
@@ -119,9 +116,9 @@ public class SMS extends MIDlet implements CommandListener {
         
         // edit
         private boolean initialized =  false;
-        private StreamConnection gprs_holder = null;
-        private	DataInputStream gprs_holder_is = null;
-        private DataOutputStream gprs_holder_os = null;
+         private StreamConnection gprs_holder = null;
+         private	DataInputStream gprs_holder_is = null;
+         private DataOutputStream gprs_holder_os = null; 
        
 	public SMS() {
 		display = Display.getDisplay(this);
@@ -161,7 +158,7 @@ public class SMS extends MIDlet implements CommandListener {
                     if(gprs_holder == null)
                     {
                         try{
-                            gprs_holder = (StreamConnection)Connector.open("http://www.gibosms.cz/send.php");
+                          gprs_holder = (StreamConnection)Connector.open("http://www.gibosms.cz/send.php");
                             gprs_holder_os = gprs_holder.openDataOutputStream();
                             gprs_holder_os.writeByte(0);
                             gprs_holder_os.flush();
@@ -171,7 +168,7 @@ public class SMS extends MIDlet implements CommandListener {
                             System.out.println("exeption: "+e.toString());
                         }
                     }   
-        
+       
                         
 		try {
 			c = (HttpConnection)Connector.open(page);
