@@ -1,0 +1,4 @@
+-libraryjars C:\WTK20\lib\api.jar;C:\WTK20\lib\mmapi.zip;C:\WTK20\lib\wma.zip;C:\WTK20\lib\midpapi.zip
+-injars C:\WTK20\apps\SMS\bin\SMS.jar
+-outjar C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\SMS.jar
+-keep public class * extends javax.microedition.midlet.MIDlet 
