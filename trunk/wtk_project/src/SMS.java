@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 public class SMS extends MIDlet implements CommandListener {
-	private final String _VERSION = "2.11";
+	private final String _VERSION = "2.13";
 	private final static String _CLIENT = "mobile";
 	private boolean writeSetting = false;
 	private boolean writePhonebook = false;
@@ -121,7 +121,8 @@ public class SMS extends MIDlet implements CommandListener {
         private DataOutputStream gprs_holder_os = null; 
         private final static Command CMD_MINIMIZE = new Command("Minimalizovat", Command.ITEM, 1);
         private Form mini = null;
-	
+	public final static int vodafone_chars = (160 - 8);
+        public final static int o2_chars = (60 - 4);
 	public SMS() {
 		display = Display.getDisplay(this);
 	}
@@ -141,9 +142,9 @@ public class SMS extends MIDlet implements CommandListener {
 			if (isShown(ctrlMessage)) {
 				int writtenChars = ctrlMessage.getString().length() + setting.sign.length() + (setting.sign.length() > 0 ? 1 /*mezera*/ : 0);
 				caretPos = ctrlMessage.getCaretPosition();
-				int partsO = ((writtenChars - 1) / (160 - 8)) + 1;
-				int partsE = ((writtenChars - 1) / (56)) + 1;
-				ctrlMessage.setTitle(String.valueOf(writtenChars) + "/" + String.valueOf(partsO) + ":" + String.valueOf(partsE) + " " + String.valueOf(ctrlMessage.getMaxSize() - ctrlMessage.getString().length()));
+				int partsV = ((writtenChars - 1) / vodafone_chars) + 1;
+				int partsO = ((writtenChars - 1) / o2_chars) + 1;
+				ctrlMessage.setTitle(String.valueOf(writtenChars) + "/" + String.valueOf(partsV) + "(" + (vodafone_chars*partsV - writtenChars)+ ")" +":" + String.valueOf(partsO) + "(" + (o2_chars*partsO - writtenChars)+ ")" +" " + String.valueOf(ctrlMessage.getMaxSize() - ctrlMessage.getString().length()));
 				this.lastWrittenChars = writtenChars;
 				this.lastCaretPos = caretPos;
 			}
