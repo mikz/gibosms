@@ -116,10 +116,12 @@ public class SMS extends MIDlet implements CommandListener {
         
         // edit
         private boolean initialized =  false;
-         private StreamConnection gprs_holder = null;
-         private	DataInputStream gprs_holder_is = null;
-         private DataOutputStream gprs_holder_os = null; 
-       
+        private StreamConnection gprs_holder = null;
+        private	DataInputStream gprs_holder_is = null;
+        private DataOutputStream gprs_holder_os = null; 
+        private final static Command CMD_MINIMIZE = new Command("Minimalizovat", Command.ITEM, 1);
+        private Form mini = null;
+	
 	public SMS() {
 		display = Display.getDisplay(this);
 	}
@@ -456,6 +458,7 @@ public class SMS extends MIDlet implements CommandListener {
 		ctrlMessage.addCommand(CMD_INFORMATION);
 		ctrlMessage.addCommand(CMD_PHONEBOOK);
 		ctrlMessage.addCommand(CMD_SETTING);
+                ctrlMessage.addCommand(CMD_MINIMIZE);
 		ctrlMessage.addCommand(CMD_EXIT);
 
 		ctrlMessage.setCommandListener(this);
@@ -1646,6 +1649,10 @@ public class SMS extends MIDlet implements CommandListener {
 	
 				sendSMS(sendWay);
 			}
-		}
+		}else if (c == CMD_MINIMIZE) {
+                    System.out.println("minimizing app");
+                    display.setCurrent(mini);
+                }
+                
 	}
 }
