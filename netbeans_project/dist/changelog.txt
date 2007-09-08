@@ -1,0 +1,9 @@
+v2.13:
+ - pøidána volba do menu pøi psaní zprávy - minimalizace
+
+v2.12:
+ - možnost podržení spojení ( spotøebuje 600B na jedno spuštìní aplikace, potom ale mùžete posílat kolik chcete sms na jedno spojení)
+
+v2.11:
+ - oprava mazání textu pøi obnovení z minimalizace ( je tøeba zapnout poèítadlo znakù )
+ - odesílání na "akèním" tlaèítku
