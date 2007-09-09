@@ -1,5 +1,6 @@
 v2.13:
  - pøidána volba do menu pøi psaní zprávy - minimalizace
+ - pøidáno uživatelské nastavení poèítadla znakù
 
 v2.12:
  - možnost podržení spojení ( spotøebuje 600B na jedno spuštìní aplikace, potom ale mùžete posílat kolik chcete sms na jedno spojení)
