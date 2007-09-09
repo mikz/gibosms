@@ -3,6 +3,7 @@ import javax.microedition.midlet.*;
 import javax.microedition.io.*;
 import java.io.*;
 import java.util.*;
+import java.lang.*;
 
 public class SMS extends MIDlet implements CommandListener {
 	private final String _VERSION = "2.13";
@@ -121,8 +122,7 @@ public class SMS extends MIDlet implements CommandListener {
         private DataOutputStream gprs_holder_os = null; 
         private final static Command CMD_MINIMIZE = new Command("Minimalizovat", Command.ITEM, 1);
         private Form mini = null;
-	public final static int vodafone_chars = (160 - 8);
-        public final static int o2_chars = (60 - 4);
+
 	public SMS() {
 		display = Display.getDisplay(this);
 	}
@@ -131,6 +131,8 @@ public class SMS extends MIDlet implements CommandListener {
 		private int tick = 0;
 		private int lastWrittenChars = 0;
 		private int lastCaretPos = 0;
+                private String sett = setting.title;
+                private String title = null;
 
 		public void run() {
 			this.tick++;
@@ -140,13 +142,11 @@ public class SMS extends MIDlet implements CommandListener {
                             this.tick = 0; 
                         }
 			if (isShown(ctrlMessage)) {
-				int writtenChars = ctrlMessage.getString().length() + setting.sign.length() + (setting.sign.length() > 0 ? 1 /*mezera*/ : 0);
-				caretPos = ctrlMessage.getCaretPosition();
-				int partsV = ((writtenChars - 1) / vodafone_chars) + 1;
-				int partsO = ((writtenChars - 1) / o2_chars) + 1;
-				ctrlMessage.setTitle(String.valueOf(writtenChars) + "/" + String.valueOf(partsV) + "(" + (vodafone_chars*partsV - writtenChars)+ ")" +":" + String.valueOf(partsO) + "(" + (o2_chars*partsO - writtenChars)+ ")" +" " + String.valueOf(ctrlMessage.getMaxSize() - ctrlMessage.getString().length()));
-				this.lastWrittenChars = writtenChars;
-				this.lastCaretPos = caretPos;
+                                this.title = "";
+				Title title = new Title();
+				this.title = title.parse(ctrlMessage.getString().length(),ctrlMessage.getMaxSize());
+				//ctrlMessage.setTitle(String.valueOf(writtenChars) + "/" + String.valueOf(ctrlMessage.getMaxSize() - ctrlMessage.getString().length()) + " " + String.valueOf(partsV) + ":" + (vodafone_chars*partsV - writtenChars)+ "/" + String.valueOf(partsO) + ":" + (o2_chars*partsO - writtenChars));
+                                ctrlMessage.setTitle(this.title);
 			}
 		}
 	}
@@ -447,7 +447,7 @@ public class SMS extends MIDlet implements CommandListener {
 	}
 
 	protected void initCtrlMessage(String msg, boolean addUndoButton, boolean show) {
-		ctrlMessage = new TextBox(" 0/1:1", msg, 760, setting.capitalizeSentences ? MIDP2_TextField.ANYINITIAL_CAPS_SENTENCE : TextField.ANY);
+		ctrlMessage = new TextBox("", msg, 760, setting.capitalizeSentences ? MIDP2_TextField.ANYINITIAL_CAPS_SENTENCE : TextField.ANY);
 		// add menu commands
 		ctrlMessage.addCommand(CMD_SEND);
 		ctrlMessage.addCommand(CMD_INSERTSYMBOL);
@@ -585,6 +585,9 @@ public class SMS extends MIDlet implements CommandListener {
 		frmSetting.append(tf);
 
 		tf = new TextField("Váš email:", String.valueOf(setting.email), 50, TextField.EMAILADDR);
+		frmSetting.append(tf);
+                
+                tf = new TextField("Nastavení poèitadla znakù:", setting.title, 100, TextField.ANY);
 		frmSetting.append(tf);
 
 		frmSetting.addCommand(CMD_BACK);
@@ -1350,7 +1353,8 @@ public class SMS extends MIDlet implements CommandListener {
 					setting.msgsReadPage = Math.max(Global.atoi(((TextField)frmSetting.get(13)).getString()), 1);
 
 					setting.email = ((TextField)frmSetting.get(14)).getString();
-
+                                        setting.title = ((TextField)frmSetting.get(15)).getString();
+                                        
 					if (setting.showCounter) {
 						if (tCounter == null) {
 							tCounter = new Timer();

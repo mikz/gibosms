@@ -27,7 +27,8 @@ public class Setting {
 
         // edit
         public boolean holdGPRS = false;
-
+        public String title = "%Np%:%Nz% %Vc%%:Vz%|%Oc%%:Oz%|%Tc%%:Tz%";
+        
 	public void Load() {
 		Vector varStore = Global.LoadVariablesFromFile(settingFile, true);
 		if (varStore != null) {
@@ -53,7 +54,9 @@ public class Setting {
 			nSentMessages = Global.LoadIntFromVariablesStore(varStore, "nSentMessages", 0);
 			lastSendWay = Global.LoadIntFromVariablesStore(varStore, "lastSendWay", 0);
 			msg = Global.LoadStringFromVariablesStore(varStore, "msg", "");
+                        
                         holdGPRS = Global.LoadIntFromVariablesStore(varStore, "holdGPRS", 0) != 0;
+                        title = Global.LoadStringFromVariablesStore(varStore, "title", "%Np%:%Nz% %Vc%%:Vz%|%Oc%%:Oz%|%Tc%%:Tz%");
                       
 
 		}
@@ -86,7 +89,7 @@ public class Setting {
 		Global.WriteStringToVariablesStore(varStore, "msg", msg, true);
 
                 Global.WriteIntToVariablesStore(varStore, "holdGPRS", holdGPRS ? 1 : 0, true);
-
+                Global.WriteStringToVariablesStore(varStore, "title", title, true);
 		return Global.WriteVariablesToFile(varStore, settingFile);
 	}
 }
