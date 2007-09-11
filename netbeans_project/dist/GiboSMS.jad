@@ -1,10 +1,13 @@
 MIDlet-1: SMS, /pics/SMS.png, SMS
+MIDlet-Certificate-1-1: MIICEDCCAXkCBEbmwmowDQYJKoZIhvcNAQEEBQAwTzELMAkGA1UEBhMCQ1oxFzAVBgNVBAgTDkN6ZWNoIFJlcHVibGljMQ8wDQYDVQQHEwZQcmFndWUxFjAUBgNVBAMTDU1pY2hhbCBDaWNocmEwHhcNMDcwOTExMTYyOTMwWhcNMDgwMzA5MTYyOTMwWjBPMQswCQYDVQQGEwJDWjEXMBUGA1UECBMOQ3plY2ggUmVwdWJsaWMxDzANBgNVBAcTBlByYWd1ZTEWMBQGA1UEAxMNTWljaGFsIENpY2hyYTCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAi1RLCBTNY2oUOMSL7XKj7JlEZKN7QsIlh2OiXyxniaASpt68GSgOJGOgohoyRuh7aHuWaXnwZmNtleHo1KhKrtU6QJVuqd7T5rlnCft3p+NH/9m/fQd8TBSUK3x6sw1VaHaaX8ncZX0A7x+N87JTr9JQhEAC6FM5UTUVlErsY10CAwEAATANBgkqhkiG9w0BAQQFAAOBgQAbgl5smylqNvVZ+aE4re4BG1fK9mORStI+VNkrjEysa9YAxkGUEaA8fK06LLEQ3uG2W3IkTQZta1sBlvjqDpyryYXXvoADlpbLIYdha22mGoRdgYIUL/thi76fT0QCtHlo1jN6aMqFcv6xA5izl9xqhF/Qbti2jMLjfsUZ+/GxGQ==
 MIDlet-Description: Odesila SMS pres internetove SMS brany
 MIDlet-Info-URL: http://www.gibosms.cz
-MIDlet-Jar-Size: 59322
+MIDlet-Jar-RSA-SHA1: Enwt7FVszzfIFDYoNbPguzWi26D9mEeoYzHktu8dGraGd55fGBsoriuSeaT7oBg6KPvPDurjFP9mC4BiCpzWKB1oaTlJamBHUTTKnUpY5VTKqIcgJKrcx6HzA2+rHaUuPvAuWm1ELbP7sbDDMR1+UkOHJPGlnJ7K7SmYSGVDFaY=
+MIDlet-Jar-Size: 60319
 MIDlet-Jar-URL: GiboSMS.jar
 MIDlet-Name: Gibo SMS mod
+MIDlet-Permissions: javax.microedition.io.Connector.http
 MIDlet-Vendor: Josef Kyrian, MikZ
-MIDlet-Version: 2.13
+MIDlet-Version: 2.14
 MicroEdition-Configuration: CLDC-1.1
 MicroEdition-Profile: MIDP-2.0

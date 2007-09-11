@@ -28,6 +28,11 @@ public class Setting {
         // edit
         public boolean holdGPRS = false;
         public String title = "%Np%:%Nz% %Vc%%:Vz%|%Oc%%:Oz%|%Tc%%:Tz%";
+	public boolean SWdelEmail = false;
+	public boolean SWdelGibo = false;
+	public boolean SWdelNorm = false;
+	public boolean SWdelPaid = false;
+	public boolean SWdelMemail = false;
         
 	public void Load() {
 		Vector varStore = Global.LoadVariablesFromFile(settingFile, true);
@@ -57,6 +62,12 @@ public class Setting {
                         
                         holdGPRS = Global.LoadIntFromVariablesStore(varStore, "holdGPRS", 0) != 0;
                         title = Global.LoadStringFromVariablesStore(varStore, "title", "%Np%:%Nz% %Vc%%:Vz%|%Oc%%:Oz%|%Tc%%:Tz%");
+			
+			SWdelEmail = Global.LoadIntFromVariablesStore(varStore, "SWdelEmail", 0) != 0;
+			SWdelGibo = Global.LoadIntFromVariablesStore(varStore, "SWdelGibo", 0) != 0;
+			SWdelNorm = Global.LoadIntFromVariablesStore(varStore, "SWdelNorm", 0) != 0;
+			SWdelPaid = Global.LoadIntFromVariablesStore(varStore, "SWdelPaid", 0) != 0;
+			SWdelMemail = Global.LoadIntFromVariablesStore(varStore, "SWdelMemail", 0) != 0;
                       
 
 		}
@@ -90,6 +101,14 @@ public class Setting {
 
                 Global.WriteIntToVariablesStore(varStore, "holdGPRS", holdGPRS ? 1 : 0, true);
                 Global.WriteStringToVariablesStore(varStore, "title", title, true);
+		
+		Global.WriteIntToVariablesStore(varStore, "SWdelEmail", SWdelEmail ? 1 : 0, true);
+		Global.WriteIntToVariablesStore(varStore, "SWdelGibo", SWdelGibo ? 1 : 0, true);
+		Global.WriteIntToVariablesStore(varStore, "SWdelNorm", SWdelNorm ? 1 : 0, true);
+		Global.WriteIntToVariablesStore(varStore, "SWdelPaid", SWdelPaid ? 1 : 0, true);
+		Global.WriteIntToVariablesStore(varStore, "SWdelMemail", SWdelMemail ? 1 : 0, true);
+		
+		
 		return Global.WriteVariablesToFile(varStore, settingFile);
 	}
 }

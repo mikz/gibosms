@@ -1,3 +1,7 @@
+v2.14:
+ - pøidáno pokroèilé nastavení
+ - pøidána možnost odebrání zpùzobù odeslání
+ 
 v2.13:
  - pøidána volba do menu pøi psaní zprávy - minimalizace
  - pøidáno uživatelské nastavení poèítadla znakù
