@@ -521,7 +521,7 @@ public class SMS extends MIDlet implements CommandListener {
 		return display.getCurrent() == dis;
 	}
 	protected void showAdvSetting() {
-	    frmAdvSetting = new Form("Pokroøilé nastavení");
+	    frmAdvSetting = new Form("Pokroèilé nastavení");
 	    StringItem si = new StringItem("","Nastavte si možnosti odeslání:");
 	    
 	    ChoiceGroup cg = new ChoiceGroup("Vymazat \"Email\"", ChoiceGroup.MULTIPLE);
@@ -1429,7 +1429,7 @@ public class SMS extends MIDlet implements CommandListener {
 					
 					setting.title = ((TextField)frmAdvSetting.get(5)).getString();
 				
-					showSetting();
+					display.setCurrent(frmSetting);
 					setting.Write();
 					writeSetting = false;
 			}else if (isShown(frmPhonebookItem)) {
