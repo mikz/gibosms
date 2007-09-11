@@ -36,7 +36,7 @@ public class Title {
     }
     public String zk(int parts, int chars) 
     {
-	return String.valueOf((chars*parts - this.writtenChars)<20 ? String.valueOf(chars*parts - this.writtenChars) : "");
+	return String.valueOf((chars*parts - this.writtenChars)<10 ? String.valueOf(chars*parts - this.writtenChars) : "");
     }
     public String p(int parts, int chars)
     {
@@ -44,7 +44,7 @@ public class Title {
     }
     public String pk(int parts, int chars)
     {
-	return String.valueOf((chars - (chars*parts - this.writtenChars))<20 ? String.valueOf(chars - (chars*parts - this.writtenChars)) : "");
+	return String.valueOf((chars - (chars*parts - this.writtenChars))<10 ? String.valueOf(chars - (chars*parts - this.writtenChars)) : "");
     }
     public String z(int parts, int chars)
     {
