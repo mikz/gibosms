@@ -6,7 +6,7 @@ import java.util.*;
 import java.lang.*;
 
 public class SMS extends MIDlet implements CommandListener {
-	private final String _VERSION = "2.13";
+	private final String _VERSION = "2.14";
 	private final static String _CLIENT = "mobile";
 	private boolean writeSetting = false;
 	private boolean writePhonebook = false;
@@ -14,6 +14,7 @@ public class SMS extends MIDlet implements CommandListener {
         public static Display display;
 	private Form frmNumber = null;
 	private Form frmSetting = null;
+	private Form frmAdvSetting = null;
 	private Form frmStatus = null;
 	private Form frmPhonebookItem = null;
 	private Form frmConfirm = null;
@@ -42,11 +43,12 @@ public class SMS extends MIDlet implements CommandListener {
 	private List lstMsgsReadType = null;
 	private List lstTMAccounts = null;
 	private Phonebook phonebook = new Phonebook();
+	private final static Command CMD_ADVSETTING = new Command("Pokroèilé", Command.ITEM, 1);
 	private final static Command CMD_SETTING = new Command("Nastavení", Command.ITEM, 1);
 	private final static Command CMD_CLEAR = new Command("Vymazat text", Command.ITEM, 1);
 	private final static Command CMD_INSERTSYMBOL = new Command("Smajlík", Command.ITEM, 1);
 	private final static Command CMD_SEND = new Command("Poslat", Command.OK, 1);
-	private final static Command CMD_OK = new Command("OK", Command.ITEM, 1);
+	private final static Command CMD_OK = new Command("OK", Command.OK, 1);
 	private final static Command CMD_EXIT = new Command("Konec", Command.EXIT, 4);
 	private final static Command CMD_BACK = new Command("Zpìt", Command.BACK, 2);
 	private final static Command CMD_NEWSMS = new Command("Nová SMS", Command.ITEM, 2);
@@ -509,7 +511,6 @@ public class SMS extends MIDlet implements CommandListener {
 
   protected void pauseApp() {
            setting.msg = ctrlMessage.getString();
-           System.out.println("app paused and msg string: "+ setting.msg);
 	}
 
 	protected void refresh() {
@@ -519,7 +520,46 @@ public class SMS extends MIDlet implements CommandListener {
 	protected boolean isShown(Displayable dis) {
 		return display.getCurrent() == dis;
 	}
+	protected void showAdvSetting() {
+	    frmAdvSetting = new Form("Pokroøilé nastavení");
+	    StringItem si = new StringItem("","Nastavte si možnosti odeslání:");
+	    
+	    ChoiceGroup cg = new ChoiceGroup("Vymazat \"Email\"", ChoiceGroup.MULTIPLE);
+	    cg.append("Ano", null);
+	    if (setting.SWdelEmail) cg.setSelectedIndex(0, true);
+	    frmAdvSetting.append(cg);
+	    
+	    cg = new ChoiceGroup("Vymazat \"Gibomeska\"", ChoiceGroup.MULTIPLE);
+	    cg.append("Ano", null);
+	    if (setting.SWdelGibo) cg.setSelectedIndex(0, true);
+	    frmAdvSetting.append(cg);
+	    
+	    cg = new ChoiceGroup("Vymazat \"Normální SMS\"", ChoiceGroup.MULTIPLE);
+	    cg.append("Ano", null);
+	    if (setting.SWdelNorm) cg.setSelectedIndex(0, true);
+	    frmAdvSetting.append(cg);
+	    
+	    cg = new ChoiceGroup("Vymazat \"SMS za 1 Kè\"", ChoiceGroup.MULTIPLE);
+	    cg.append("Ano", null);
+	    if (setting.SWdelPaid) cg.setSelectedIndex(0, true);
+	    frmAdvSetting.append(cg);
+	    	    
+	    cg = new ChoiceGroup("Vymazat \"Mobilní email\"", ChoiceGroup.MULTIPLE);
+	    cg.append("Ano", null);
+	    if (setting.SWdelMemail) cg.setSelectedIndex(0, true);
+	    frmAdvSetting.append(cg);
+	    
+	                    
+            TextField tf = new TextField("Nastavení poèitadla znakù:", setting.title, 100, TextField.ANY);
+	    frmAdvSetting.append(tf);
+	    
+	    frmAdvSetting.addCommand(CMD_BACK);
+	    frmAdvSetting.addCommand(CMD_OK);
+	    frmAdvSetting.setCommandListener(this);
 
+	    display.setCurrent(frmAdvSetting);
+	}
+	
 	protected void showSetting() {
 		frmSetting = new Form("Nastavení");
 		TextField tf = new TextField("Vaše èíslo:", setting.srcNum, 9, TextField.NUMERIC);
@@ -586,12 +626,10 @@ public class SMS extends MIDlet implements CommandListener {
 
 		tf = new TextField("Váš email:", String.valueOf(setting.email), 50, TextField.EMAILADDR);
 		frmSetting.append(tf);
-                
-                tf = new TextField("Nastavení poèitadla znakù:", setting.title, 100, TextField.ANY);
-		frmSetting.append(tf);
 
 		frmSetting.addCommand(CMD_BACK);
 		frmSetting.addCommand(CMD_OK);
+		frmSetting.addCommand(CMD_ADVSETTING);
 		frmSetting.addCommand(CMD_SETTINGWARNING);
 		frmSetting.setCommandListener(this);
 
@@ -1040,17 +1078,17 @@ public class SMS extends MIDlet implements CommandListener {
 		try {
 			if (!setting.expertMode) {
 				lstSendWays.append("SMS zdarma pøes GPRS", null);
-				lstSendWays.append("SMS za 1 Kè", null);
-				lstSendWays.append("Email", null);
-				lstSendWays.append("Gibomeska", null);
-				lstSendWays.append("Normální SMS", null);
+				if(!setting.SWdelPaid) lstSendWays.append("SMS za 1 Kè", null);
+				if(!setting.SWdelEmail)lstSendWays.append("Email", null);
+				if(!setting.SWdelGibo)lstSendWays.append("Gibomeska", null);
+				if(!setting.SWdelNorm)lstSendWays.append("Normální SMS", null);
 			}else {
 				lstSendWays.append("Web SMS zdarma", null);
-				lstSendWays.append("SMS za 1 Kè", null);
-				lstSendWays.append("Mobilní email", null);
-				lstSendWays.append("Email", null);
-				lstSendWays.append("Gibomeska", null);
-				lstSendWays.append("Normální SMS", null);
+				if(!setting.SWdelPaid)lstSendWays.append("SMS za 1 Kè", null);
+				if(!setting.SWdelMemail)lstSendWays.append("Mobilní email", null);
+				if(!setting.SWdelEmail)lstSendWays.append("Email", null);
+				if(!setting.SWdelGibo)lstSendWays.append("Gibomeska", null);
+				if(!setting.SWdelNorm)lstSendWays.append("Normální SMS", null);
 			}
 		}catch (Exception e) {
 			// nothing
@@ -1260,6 +1298,8 @@ public class SMS extends MIDlet implements CommandListener {
 				display.setCurrent(lstMsgsReadType);
 			}else if (isShown(frmSettingWarning)) {
 				display.setCurrent(frmSetting);
+			}else if (isShown(frmAdvSetting)) {
+				display.setCurrent(frmSetting);
 			}else if (isShown(frmPassword) || isShown(frmMsgsRead)) {
 				ChoiceGroup cg = (ChoiceGroup)frmPassword.get(1);
 				boolean[] sa = new boolean[1];
@@ -1353,7 +1393,6 @@ public class SMS extends MIDlet implements CommandListener {
 					setting.msgsReadPage = Math.max(Global.atoi(((TextField)frmSetting.get(13)).getString()), 1);
 
 					setting.email = ((TextField)frmSetting.get(14)).getString();
-                                        setting.title = ((TextField)frmSetting.get(15)).getString();
                                         
 					if (setting.showCounter) {
 						if (tCounter == null) {
@@ -1369,8 +1408,30 @@ public class SMS extends MIDlet implements CommandListener {
 
 					setting.Write();
 
+					writeSetting = false;}
+			}else if (isShown(frmAdvSetting)) {
+	
+					boolean[] sa = new boolean[1];
+					ChoiceGroup cg = (ChoiceGroup)frmAdvSetting.get(0);
+					setting.SWdelEmail = cg.getSelectedFlags(sa) != 0;
+
+					cg = (ChoiceGroup)frmAdvSetting.get(1);
+					setting.SWdelGibo = cg.getSelectedFlags(sa) != 0;
+
+					cg = (ChoiceGroup)frmAdvSetting.get(2);
+					setting.SWdelNorm = cg.getSelectedFlags(sa) != 0;
+
+					cg = (ChoiceGroup)frmAdvSetting.get(3);
+					setting.SWdelPaid = cg.getSelectedFlags(sa) != 0;
+					
+					cg = (ChoiceGroup)frmAdvSetting.get(4);
+					setting.SWdelMemail = cg.getSelectedFlags(sa) != 0;
+					
+					setting.title = ((TextField)frmAdvSetting.get(5)).getString();
+				
+					showSetting();
+					setting.Write();
 					writeSetting = false;
-				}
 			}else if (isShown(frmPhonebookItem)) {
 				String name = ((TextField)frmPhonebookItem.get(0)).getString();
 				String number = ((TextField)frmPhonebookItem.get(1)).getString();
@@ -1655,8 +1716,10 @@ public class SMS extends MIDlet implements CommandListener {
 				sendSMS(sendWay);
 			}
 		}else if (c == CMD_MINIMIZE) {
-                    System.out.println("minimizing app");
                     display.setCurrent(mini);
+                }
+		else if (c == CMD_ADVSETTING) {
+		    showAdvSetting();
                 }
                 
 	}
