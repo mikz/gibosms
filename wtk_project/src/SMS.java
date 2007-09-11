@@ -552,6 +552,9 @@ public class SMS extends MIDlet implements CommandListener {
 	                    
             TextField tf = new TextField("Nastavení poèitadla znakù:", setting.title, 100, TextField.ANY);
 	    frmAdvSetting.append(tf);
+	    		
+	    tf = new TextField("Max. hodnota krácené promìné (Vpk,Vzk ...)", Global.itoa(setting.titleVarK), 2, TextField.NUMERIC);
+	    frmAdvSetting.append(tf);
 	    
 	    frmAdvSetting.addCommand(CMD_BACK);
 	    frmAdvSetting.addCommand(CMD_OK);
@@ -1428,7 +1431,8 @@ public class SMS extends MIDlet implements CommandListener {
 					setting.SWdelMemail = cg.getSelectedFlags(sa) != 0;
 					
 					setting.title = ((TextField)frmAdvSetting.get(5)).getString();
-				
+					setting.titleVarK = Math.max(Global.atoi(((TextField)frmAdvSetting.get(6)).getString()), 1);
+					
 					display.setCurrent(frmSetting);
 					setting.Write();
 					writeSetting = false;
