@@ -524,27 +524,27 @@ public class SMS extends MIDlet implements CommandListener {
 	    frmAdvSetting = new Form("Pokroèilé nastavení");
 	    StringItem si = new StringItem("","Nastavte si možnosti odeslání:");
 	    
-	    ChoiceGroup cg = new ChoiceGroup("Vymazat \"Email\"", ChoiceGroup.MULTIPLE);
+	    ChoiceGroup cg = new ChoiceGroup("Vymazat \""+SENDWAYstr.EMAIL+"\"", ChoiceGroup.MULTIPLE);
 	    cg.append("Ano", null);
 	    if (setting.SWdelEmail) cg.setSelectedIndex(0, true);
 	    frmAdvSetting.append(cg);
 	    
-	    cg = new ChoiceGroup("Vymazat \"Gibomeska\"", ChoiceGroup.MULTIPLE);
+	    cg = new ChoiceGroup("Vymazat \""+SENDWAYstr.MAILBOX+"\"", ChoiceGroup.MULTIPLE);
 	    cg.append("Ano", null);
 	    if (setting.SWdelGibo) cg.setSelectedIndex(0, true);
 	    frmAdvSetting.append(cg);
 	    
-	    cg = new ChoiceGroup("Vymazat \"Normální SMS\"", ChoiceGroup.MULTIPLE);
+	    cg = new ChoiceGroup("Vymazat \""+SENDWAYstr.NORMALSMS+"\"", ChoiceGroup.MULTIPLE);
 	    cg.append("Ano", null);
 	    if (setting.SWdelNorm) cg.setSelectedIndex(0, true);
 	    frmAdvSetting.append(cg);
 	    
-	    cg = new ChoiceGroup("Vymazat \"SMS za 1 Kè\"", ChoiceGroup.MULTIPLE);
+	    cg = new ChoiceGroup("Vymazat \""+SENDWAYstr.PAIDSMS+"\"", ChoiceGroup.MULTIPLE);
 	    cg.append("Ano", null);
 	    if (setting.SWdelPaid) cg.setSelectedIndex(0, true);
 	    frmAdvSetting.append(cg);
 	    	    
-	    cg = new ChoiceGroup("Vymazat \"Mobilní email\"", ChoiceGroup.MULTIPLE);
+	    cg = new ChoiceGroup("Vymazat \""+SENDWAYstr.MOBEMAIL+"\"", ChoiceGroup.MULTIPLE);
 	    cg.append("Ano", null);
 	    if (setting.SWdelMemail) cg.setSelectedIndex(0, true);
 	    frmAdvSetting.append(cg);
@@ -1080,23 +1080,23 @@ public class SMS extends MIDlet implements CommandListener {
 
 		try {
 			if (!setting.expertMode) {
-				lstSendWays.append("SMS zdarma pøes GPRS", null);
-				if(!setting.SWdelPaid) lstSendWays.append("SMS za 1 Kè", null);
-				if(!setting.SWdelEmail)lstSendWays.append("Email", null);
-				if(!setting.SWdelGibo)lstSendWays.append("Gibomeska", null);
-				if(!setting.SWdelNorm)lstSendWays.append("Normální SMS", null);
+				lstSendWays.append(SENDWAYstr.GPRSMSG, null);
+				if(!setting.SWdelPaid) lstSendWays.append(SENDWAYstr.PAIDSMS, null);
+				if(!setting.SWdelEmail)lstSendWays.append(SENDWAYstr.EMAIL, null);
+				if(!setting.SWdelGibo)lstSendWays.append(SENDWAYstr.MAILBOX, null);
+				if(!setting.SWdelNorm)lstSendWays.append(SENDWAYstr.NORMALSMS, null);
 			}else {
 				lstSendWays.append("Web SMS zdarma", null);
-				if(!setting.SWdelPaid)lstSendWays.append("SMS za 1 Kè", null);
-				if(!setting.SWdelMemail)lstSendWays.append("Mobilní email", null);
-				if(!setting.SWdelEmail)lstSendWays.append("Email", null);
-				if(!setting.SWdelGibo)lstSendWays.append("Gibomeska", null);
-				if(!setting.SWdelNorm)lstSendWays.append("Normální SMS", null);
+				if(!setting.SWdelPaid)lstSendWays.append(SENDWAYstr.PAIDSMS, null);
+				if(!setting.SWdelMemail)lstSendWays.append(SENDWAYstr.MOBEMAIL, null);
+				if(!setting.SWdelEmail)lstSendWays.append(SENDWAYstr.EMAIL, null);
+				if(!setting.SWdelGibo)lstSendWays.append(SENDWAYstr.MAILBOX, null);
+				if(!setting.SWdelNorm)lstSendWays.append(SENDWAYstr.NORMALSMS, null);
 			}
 		}catch (Exception e) {
 			// nothing
 		}
-		lstSendWays.setSelectedIndex(setting.lastSendWay, true);
+		if(lstSendWays.size()>setting.lastSendWay) lstSendWays.setSelectedIndex(setting.lastSendWay, true);
 
 		display.setCurrent(lstSendWays);
 	}
@@ -1625,38 +1625,14 @@ public class SMS extends MIDlet implements CommandListener {
 			runningThread.start();
 		}else if (c == CMD_SENDWAYSELECT) {
 			int selIndex = lstSendWays.getSelectedIndex();
+                        String selStr = lstSendWays.getString(selIndex);
+                        SENDWAYstr SWstr = new SENDWAYstr(selStr);
 			if (selIndex != -1 ) {
 				setting.lastSendWay = selIndex;
 				writeSetting = true;
 
-				if (!setting.expertMode) {
-					if (selIndex == 0) {
-						sendWay = SENDWAY.GPRSMSG;
-					}else if (selIndex == 1) {
-						sendWay = SENDWAY.PAIDSMS;
-					}else if (selIndex == 2) {
-						sendWay = SENDWAY.EMAIL;
-					}else if (selIndex == 3) {
-						sendWay = SENDWAY.MAILBOX;
-					}else if (selIndex == 4) {
-						sendWay = SENDWAY.NORMALSMS;
-					}
-				}else {
-					if (selIndex == 0) {
-						sendWay = SENDWAY.WEBSMS;
-					}else if (selIndex == 1) {
-						sendWay = SENDWAY.PAIDSMS;
-					}else if (selIndex == 2) {
-						sendWay = SENDWAY.MOBEMAIL;
-					}else if (selIndex == 3) {
-						sendWay = SENDWAY.EMAIL;
-					}else if (selIndex == 4) {
-						sendWay = SENDWAY.MAILBOX;
-					}else if (selIndex == 5) {
-						sendWay = SENDWAY.NORMALSMS;
-					}
-				}
-
+				sendWay = SWstr.sendWay;
+                                
 				if (sendWay != SENDWAY.EMAIL) {
 					if (setting.useInternalPhonebook) {
 						pbBackDisplay = display.getCurrent();
