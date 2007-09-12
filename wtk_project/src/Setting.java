@@ -33,7 +33,7 @@ public class Setting {
 	public boolean SWdelNorm = false;
 	public boolean SWdelPaid = false;
 	public boolean SWdelMemail = false;
-	public int titleVarK = 9;
+	public int titleVarK = 10;
         
 	public void Load() {
 		Vector varStore = Global.LoadVariablesFromFile(settingFile, true);
@@ -70,7 +70,7 @@ public class Setting {
 			SWdelPaid = Global.LoadIntFromVariablesStore(varStore, "SWdelPaid", 0) != 0;
 			SWdelMemail = Global.LoadIntFromVariablesStore(varStore, "SWdelMemail", 0) != 0;
                       
-			titleVarK = Global.LoadIntFromVariablesStore(varStore, "titleVarK", 9);
+			titleVarK = Global.LoadIntFromVariablesStore(varStore, "titleVarK", 10);
 		}
 	}
 
