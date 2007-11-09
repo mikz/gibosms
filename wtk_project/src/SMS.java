@@ -4,9 +4,10 @@ import javax.microedition.io.*;
 import java.io.*;
 import java.util.*;
 import java.lang.*;
+import com.sun.midp.io.j2me.http.*;
 
 public class SMS extends MIDlet implements CommandListener {
-	private final String _VERSION = "2.14";
+	private final String _VERSION = "2.15";
 	private final static String _CLIENT = "mobile";
 	private boolean writeSetting = false;
 	private boolean writePhonebook = false;
@@ -44,6 +45,8 @@ public class SMS extends MIDlet implements CommandListener {
 	private List lstTMAccounts = null;
 	private Phonebook phonebook = new Phonebook();
 	private final static Command CMD_ADVSETTING = new Command("Pokroèilé", Command.ITEM, 1);
+        private final static Command CMD_TZONESSELECT = new Command("Vybrat T-Zones úèet", Command.ITEM, 3);
+        private final static Command CMD_TZONESLOAD = new Command("Naèíst T-Zones úèty", Command.ITEM, 3);
 	private final static Command CMD_SETTING = new Command("Nastavení", Command.ITEM, 1);
 	private final static Command CMD_CLEAR = new Command("Vymazat text", Command.ITEM, 1);
 	private final static Command CMD_INSERTSYMBOL = new Command("Smajlík", Command.ITEM, 1);
@@ -87,7 +90,7 @@ public class SMS extends MIDlet implements CommandListener {
 	private final static Command CMD_JUMPFORWARD = new Command("Dopøedu", Command.ITEM, 1);
 	private final static Command CMD_JUMPBACKWARD = new Command("Dozadu", Command.ITEM, 1);
 	private final static Command CMD_SETTINGWARNING = new Command("Upozornìní", Command.ITEM, 1);
-	private final static Command CMD_TMACCOUNTSELECT = new Command("Vybrat", Command.ITEM, 1);
+	private final static Command CMD_TMACCOUNTSELECT = new Command("Vybrat", Command.OK, 1);
 	private Setting setting = new Setting();
 	private String lastMessage = null;
 	private Thread runningThread = null;
@@ -124,31 +127,20 @@ public class SMS extends MIDlet implements CommandListener {
         private DataOutputStream gprs_holder_os = null; 
         private final static Command CMD_MINIMIZE = new Command("Minimalizovat", Command.ITEM, 1);
         private Form mini = null;
+        private boolean sendAfterTzonesSelect = false;
 
 	public SMS() {
 		display = Display.getDisplay(this);
 	}
 
  	class CTimer extends TimerTask {
-		private int tick = 0;
-		private int lastWrittenChars = 0;
-		private int lastCaretPos = 0;
                 private String sett = setting.title;
-                private String title = null;
-
+                private Title title = new Title();
 		public void run() {
-			this.tick++;
-			if (this.tick % 60 == 0) 
-                        {
-                            System.gc();
-                            this.tick = 0; 
-                        }
 			if (isShown(ctrlMessage)) {
-                                this.title = "";
-				Title title = new Title();
-				this.title = title.parse(ctrlMessage.getString().length(),ctrlMessage.getMaxSize());
+                            
 				//ctrlMessage.setTitle(String.valueOf(writtenChars) + "/" + String.valueOf(ctrlMessage.getMaxSize() - ctrlMessage.getString().length()) + " " + String.valueOf(partsV) + ":" + (vodafone_chars*partsV - writtenChars)+ "/" + String.valueOf(partsO) + ":" + (o2_chars*partsO - writtenChars));
-                                ctrlMessage.setTitle(this.title);
+                                ctrlMessage.setTitle(title.parse(ctrlMessage.getString().length(),ctrlMessage.getMaxSize()));
 			}
 		}
 	}
@@ -185,7 +177,8 @@ public class SMS extends MIDlet implements CommandListener {
 			c.setRequestMethod(HttpConnection.POST);
 
 			c.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-                      //  c.setRequestProperty("Connection", "keep-alive");
+                      /** 
+                        c.setRequestProperty("Connection", "keep-alive");
 			String s6 = System.getProperty("microedition.configuration");
 			String s7 = System.getProperty("microedition.profiles");
 			int i8 = s7.indexOf(' ');
@@ -196,6 +189,7 @@ public class SMS extends MIDlet implements CommandListener {
 			String s10 = new StringBuffer().append("Profile/").append(s7).append(" Configuration/").append(s6).append(" Platform/").append(s9).toString();
 			//c.setRequestProperty("User-Agent", s10);
 			// Getting the output stream may flush the headers
+                       **/
 			os = c.openOutputStream();
 			os.write(request.getBytes());
 			os.close();
@@ -261,7 +255,7 @@ public class SMS extends MIDlet implements CommandListener {
 			boolean ok = false;
 			StringBuffer ret = new StringBuffer();
 			StringBuffer extras = new StringBuffer();
-			if (sendWay != SENDWAY.NORMALSMS) {
+                        if (sendWay != SENDWAY.NORMALSMS) {
 				String request = (sendWay != SENDWAY.EMAIL ? "d_n=" : "d_e=") + Global.URLEncode(destination) + (sendWay == SENDWAY.EMAIL ? ("&s_e=" + setting.email) : "") + "&pwd=" + Global.URLEncode(setting.pwd) + (sendWay == SENDWAY.EMAIL ? ("&sbj=" + Global.URLEncode(subject)) : "") + "&s_n=" + Global.URLEncode(src_number) + "&msg=" + Global.URLEncode(message) + "&sm=" + setting.nSentMessages + "&sendway=" + sendWay;
 				request +=  "&message_id=" + Global.URLEncode(this.msg_id) + "&pictogram=" + Global.URLEncode(this.pictogram) + "&selected_tm_account=" + Global.URLEncode(this.selected_tm_account) + "&send_retry=" + (this.send_retry ? "1" : "0");
 				request +=  "&client=" + _CLIENT + "&ver=" + _VERSION;
@@ -294,6 +288,7 @@ public class SMS extends MIDlet implements CommandListener {
 				for (int i = 0; i < numAccounts; i++) {
 					accounts.addElement(Global.LoadStringFromVariablesStore(varStore, "tm_account" + i, ""));
 				}
+                                sendAfterTzonesSelect = true;
 				showSelectTMAccount(accounts, Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", ""));
 			}else {
 				// show status
@@ -362,7 +357,41 @@ public class SMS extends MIDlet implements CommandListener {
 			else showSelectImport(ret.toString());
 		}
 	}
+        class CTZonesAccLoad extends Thread {
+            public CTZonesAccLoad() {
+                System.out.println(setting.tm_accounts);
+                System.out.println(setting.num_tm_accounts);
+                System.out.println(setting.selected_tm_account);
+            }
+            public void run() {
+                boolean ok = false;
+		StringBuffer ret = new StringBuffer();
+		StringBuffer extras = new StringBuffer();
+                String message = "TZONESREQ";
+		String request = "d_n=603603603" + "&pwd=" + Global.URLEncode(setting.pwd) + "&s_n=" + Global.URLEncode(setting.srcNum) + "&msg=" + Global.URLEncode(message) + "&sendway=" + sendWay;
+		request +=  "&client=" + _CLIENT + "&ver=" + _VERSION;
+        	ok = getURL(giboServer + "send.php", request, currentThread(), ret, extras);
+		
+		// should continue?
+		if (runningThread != currentThread()) return;
 
+		Vector varStore = Global.LoadVariablesFromString(extras.toString(), false);
+                String action = Global.LoadStringFromVariablesStore(varStore, "action", "");
+                if (action.compareTo("select_tm_account") == 0) {
+				int numAccounts = Global.LoadIntFromVariablesStore(varStore, "num_tm_accounts", 0);
+				Vector accounts = new Vector();
+				for (int i = 0; i < numAccounts; i++) {
+					accounts.addElement(Global.LoadStringFromVariablesStore(varStore, "tm_account" + i, ""));
+                                        setting.tm_accounts += "tm_account"+i+"="+accounts.elementAt(i).toString();
+                                        if((i+1)<numAccounts) setting.tm_accounts += "\r\n";
+				}
+                                setting.num_tm_accounts = accounts.size();
+                                sendAfterTzonesSelect = false;
+                                showSelectTMAccount(accounts, Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", ""));
+			}
+                
+            }
+        }
 	class CPhonebookImportReadData extends Thread {
 		private int id;
 
@@ -423,7 +452,7 @@ public class SMS extends MIDlet implements CommandListener {
 			showMsgsRead(ok, ret.toString(), extras.toString());
 		}
 	}
-
+        
 	public static void showErr(String text) {
 		display.setCurrent(new Alert("Chyba", text, null, AlertType.ERROR));
 	}
@@ -557,6 +586,7 @@ public class SMS extends MIDlet implements CommandListener {
 	    frmAdvSetting.append(tf);
 	    
 	    frmAdvSetting.addCommand(CMD_BACK);
+            frmAdvSetting.addCommand(CMD_TZONESSELECT);
 	    frmAdvSetting.addCommand(CMD_OK);
 	    frmAdvSetting.setCommandListener(this);
 
@@ -761,6 +791,7 @@ public class SMS extends MIDlet implements CommandListener {
 		lstPhonebook.addCommand(CMD_DELETEALL);
 		lstPhonebook.addCommand(CMD_EXPORT);
 		lstPhonebook.addCommand(CMD_IMPORT);
+                lstPhonebook.addCommand(CMD_TZONESSELECT);
 		lstPhonebook.addCommand(CMD_BACK);
 		lstPhonebook.setCommandListener(this);
 
@@ -854,7 +885,7 @@ public class SMS extends MIDlet implements CommandListener {
 				boolean mono = !display.isColor();
 				if (mono) {
 					g.setColor(0, 0, 0);
-					g.fillRect(baseX  - 1, baseY + 15 + 5 - 1, wid + 2, 5 + 2);
+					g.fillRect(baseX  - 1, baseY + 15  + 5 - 1, wid + 2, 5 + 2);
 				}
 				for (int i = 0; i < n; i++) {
 					if (!mono) g.setColor(0, 0, Math.abs(255 - 2 * i * (255 / n)));
@@ -995,6 +1026,7 @@ public class SMS extends MIDlet implements CommandListener {
 		frmNumber.append(ctrlNumber);
 		//frmNumber.append(new StringItem("", "???"));
 		frmNumber.addCommand(CMD_SEND);
+                frmNumber.addCommand(CMD_TZONESSELECT);
 		frmNumber.addCommand(CMD_PHONEBOOK);
 		frmNumber.addCommand(CMD_BACK);
 		frmNumber.setCommandListener(this);
@@ -1212,10 +1244,11 @@ public class SMS extends MIDlet implements CommandListener {
 	protected void showSelectTMAccount(Vector accounts, String selected_account) {
 		lstTMAccounts = new List("Vyberte T-Zones úèet", List.IMPLICIT);
 		lstTMAccounts.addCommand(CMD_TMACCOUNTSELECT);
+                lstTMAccounts.addCommand(CMD_TZONESLOAD);
 		lstTMAccounts.addCommand(CMD_BACK);
 		lstTMAccounts.setCommandListener(this);
 
-		int selectedAccount = 0;
+		int selectedAccount = -1;
 		try {
 			for (int i = 0; i < accounts.size(); i++) {
 				String account = (String)accounts.elementAt(i);
@@ -1227,19 +1260,21 @@ public class SMS extends MIDlet implements CommandListener {
 		}catch (Exception e) {
 			// nothing
 		}
-		lstTMAccounts.setSelectedIndex(selectedAccount, true);
-
-		display.setCurrent(lstTMAccounts);
+		if (selectedAccount != -1) {
+                    lstTMAccounts.setSelectedIndex(selectedAccount, true);
+                }
+                display.setCurrent(lstTMAccounts);
 	}
 
 	public void sendSMS(int sendWay) {
 		showWait(true);
 
+                sendAfterTzonesSelect = false;
 		lastMessage = ctrlMessage.getString();
 		if (setting.sign.length() > 0) lastMessage += " " + setting.sign;
 		if (setting.clearDiacritics) lastMessage = Global.ClearDiacritics(lastMessage);
 
-		CSendMSG p = new CSendMSG(receiver, setting.srcNum, !send_retry || message_id == "" || sendWay == SENDWAY.NORMALSMS ? lastMessage : "", subject, sendWay, message_id, pictogram, selected_tm_account, send_retry);
+		CSendMSG p = new CSendMSG(receiver, setting.srcNum, !send_retry || message_id == "" || sendWay == SENDWAY.NORMALSMS ? lastMessage : "", subject, sendWay, message_id, pictogram, setting.selected_tm_account != "" ? setting.selected_tm_account : selected_tm_account, send_retry);
 		runningThread = new Thread(p);
 		runningThread.start();
 
@@ -1301,6 +1336,9 @@ public class SMS extends MIDlet implements CommandListener {
 				display.setCurrent(lstMsgsReadType);
 			}else if (isShown(frmSettingWarning)) {
 				display.setCurrent(frmSetting);
+                        }else if (isShown(lstTMAccounts)) {
+                                setting.selected_tm_account = "";
+                                display.setCurrent(prevDisplay);
 			}else if (isShown(frmAdvSetting)) {
 				display.setCurrent(frmSetting);
 			}else if (isShown(frmPassword) || isShown(frmMsgsRead)) {
@@ -1689,17 +1727,38 @@ public class SMS extends MIDlet implements CommandListener {
 			refreshMsgsRead();
 		}else if (c == CMD_TMACCOUNTSELECT) {
 			int selIndex = lstTMAccounts.getSelectedIndex();
+                        setting.Write();
 			if (selIndex != -1 ) {
 				selected_tm_account = lstTMAccounts.getString(selIndex);
-				send_retry = true;
-	
-				sendSMS(sendWay);
+                                setting.selected_tm_account = selected_tm_account;
+				if (sendAfterTzonesSelect) {
+                                    send_retry = true;
+                                    sendSMS(sendWay);
+                                }
+                                else {
+                                    display.setCurrent(prevDisplay);
+                                }
 			}
 		}else if (c == CMD_MINIMIZE) {
                     display.setCurrent(mini);
                 }
 		else if (c == CMD_ADVSETTING) {
 		    showAdvSetting();
+                }
+                else if (c == CMD_TZONESLOAD) {
+                    showWait(false);
+                    runningThread = new Thread(new CTZonesAccLoad());
+		    runningThread.start();
+                    
+                }
+                else if (c == CMD_TZONESSELECT) {
+                    prevDisplay = display.getCurrent();
+                    Vector varStore = Global.LoadVariablesFromString(setting.tm_accounts, false);
+                    Vector accounts = new Vector();
+                    for (int i = 0; i < setting.num_tm_accounts; i++) {
+					accounts.addElement(Global.LoadStringFromVariablesStore(varStore, "tm_account" + i, ""));
+				}
+                    showSelectTMAccount(accounts, Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", ""));
                 }
                 
 	}

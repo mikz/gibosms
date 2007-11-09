@@ -61,7 +61,7 @@ public class Title {
     
     public String variable(String variable)
     {
-	String buff = new String();
+	String buff = "";
 	this.writtenChars = this.strlen + this.setting.sign.length() + (this.setting.sign.length() > 0 ? 1 /*mezera*/ : 0);
 	int partsV = ((this.writtenChars - 1) / vodafone_chars) + 1;
 	int partsO = ((this.writtenChars - 1) / o2_chars) + 1;
@@ -197,7 +197,7 @@ public class Title {
 	    }
 	    else this.title += this.sett.charAt(i);
 	  }
-   
+        System.gc();
 	return this.title;
     }
     
