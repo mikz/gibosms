@@ -35,7 +35,7 @@ public class Setting {
 	public boolean SWdelMemail = false;
 	public int titleVarK = 10;
         public int num_tm_accounts = 0;
-        public String tm_accounts = "";
+        public Vector tm_accounts = new Vector();
         public String selected_tm_account = "";
         
         
@@ -78,13 +78,17 @@ public class Setting {
                         
                         num_tm_accounts = Global.LoadIntFromVariablesStore(varStore, "num_tm_accounts", 0);
                         selected_tm_account = Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", "");
-                        tm_accounts = Global.LoadStringFromVariablesStore(varStore, "tm_accounts", "");
+                        tm_accounts = new Vector();
+			for (int i = 0; i < num_tm_accounts; i++) {
+					tm_accounts.addElement(Global.LoadStringFromVariablesStore(varStore, "tm_account" + i, ""));
+				}
+                        System.out.println("setting loaded from file: "+settingFile);
 		}
 	}
 
 	public boolean Write() {
 		Vector varStore = new Vector();
-
+                
 		Global.WriteStringToVariablesStore(varStore, "srcNum", srcNum, false);
 		Global.WriteStringToVariablesStore(varStore, "pwd", pwd, false);
 		Global.WriteStringToVariablesStore(varStore, "sign", sign, false);
@@ -118,9 +122,12 @@ public class Setting {
 		Global.WriteIntToVariablesStore(varStore, "SWdelMemail", SWdelMemail ? 1 : 0, false);
 		
 		Global.WriteIntToVariablesStore(varStore, "titleVarK", titleVarK, false);
-		Global.WriteStringToVariablesStore(varStore, "tm_accounts", tm_accounts, false);
                 Global.WriteStringToVariablesStore(varStore, "selected_tm_account", selected_tm_account, false);
                 Global.WriteIntToVariablesStore(varStore, "num_tm_accounts", num_tm_accounts, false);
+                for (int i = 0; i < num_tm_accounts; i++) {
+                    Global.WriteStringToVariablesStore(varStore, "tm_account"+i, (String)tm_accounts.elementAt(i), false);
+                }
+                System.out.println("setting written to file: "+settingFile);
 		return Global.WriteVariablesToFile(varStore, settingFile);
 	}
 }
