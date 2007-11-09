@@ -45,8 +45,7 @@ public class SMS extends MIDlet implements CommandListener {
 	private List lstTMAccounts = null;
 	private Phonebook phonebook = new Phonebook();
 	private final static Command CMD_ADVSETTING = new Command("Pokroèilé", Command.ITEM, 1);
-        private final static Command CMD_TZONESSELECT = new Command("Vybrat T-Zones úèet", Command.ITEM, 3);
-        private final static Command CMD_TZONESLOAD = new Command("Naèíst T-Zones úèty", Command.ITEM, 3);
+
 	private final static Command CMD_SETTING = new Command("Nastavení", Command.ITEM, 1);
 	private final static Command CMD_CLEAR = new Command("Vymazat text", Command.ITEM, 1);
 	private final static Command CMD_INSERTSYMBOL = new Command("Smajlík", Command.ITEM, 1);
@@ -126,6 +125,8 @@ public class SMS extends MIDlet implements CommandListener {
         private	DataInputStream gprs_holder_is = null;
         private DataOutputStream gprs_holder_os = null; 
         private final static Command CMD_MINIMIZE = new Command("Minimalizovat", Command.ITEM, 1);
+        private final static Command CMD_TZONESSELECT = new Command("Vybrat T-Zones úèet", Command.ITEM, 3);
+        private final static Command CMD_TZONESLOAD = new Command("Naèíst T-Zones úèty", Command.ITEM, 3);
         private Form mini = null;
         private boolean sendAfterTzonesSelect = false;
 
@@ -285,11 +286,15 @@ public class SMS extends MIDlet implements CommandListener {
 			}else if (action.compareTo("select_tm_account") == 0) {
 				int numAccounts = Global.LoadIntFromVariablesStore(varStore, "num_tm_accounts", 0);
 				Vector accounts = new Vector();
+                                setting.tm_accounts = new Vector();
 				for (int i = 0; i < numAccounts; i++) {
 					accounts.addElement(Global.LoadStringFromVariablesStore(varStore, "tm_account" + i, ""));
 				}
+                                setting.num_tm_accounts = numAccounts;
+                                setting.tm_accounts = accounts;
                                 sendAfterTzonesSelect = true;
-				showSelectTMAccount(accounts, Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", ""));
+                                setting.Write();
+				showSelectTMAccount();
 			}else {
 				// show status
 				backDisplay = ctrlMessage;
@@ -358,11 +363,6 @@ public class SMS extends MIDlet implements CommandListener {
 		}
 	}
         class CTZonesAccLoad extends Thread {
-            public CTZonesAccLoad() {
-                System.out.println(setting.tm_accounts);
-                System.out.println(setting.num_tm_accounts);
-                System.out.println(setting.selected_tm_account);
-            }
             public void run() {
                 boolean ok = false;
 		StringBuffer ret = new StringBuffer();
@@ -380,14 +380,15 @@ public class SMS extends MIDlet implements CommandListener {
                 if (action.compareTo("select_tm_account") == 0) {
 				int numAccounts = Global.LoadIntFromVariablesStore(varStore, "num_tm_accounts", 0);
 				Vector accounts = new Vector();
+                                setting.tm_accounts = new Vector();
 				for (int i = 0; i < numAccounts; i++) {
 					accounts.addElement(Global.LoadStringFromVariablesStore(varStore, "tm_account" + i, ""));
-                                        setting.tm_accounts += "tm_account"+i+"="+accounts.elementAt(i).toString();
-                                        if((i+1)<numAccounts) setting.tm_accounts += "\r\n";
 				}
+                                setting.tm_accounts = accounts;
                                 setting.num_tm_accounts = accounts.size();
                                 sendAfterTzonesSelect = false;
-                                showSelectTMAccount(accounts, Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", ""));
+                                setting.Write();
+                                showSelectTMAccount();
 			}
                 
             }
@@ -1241,19 +1242,18 @@ public class SMS extends MIDlet implements CommandListener {
 		display.setCurrent(frmInputPictogram);
 	}
 
-	protected void showSelectTMAccount(Vector accounts, String selected_account) {
+	protected void showSelectTMAccount() {
 		lstTMAccounts = new List("Vyberte T-Zones úèet", List.IMPLICIT);
 		lstTMAccounts.addCommand(CMD_TMACCOUNTSELECT);
                 lstTMAccounts.addCommand(CMD_TZONESLOAD);
 		lstTMAccounts.addCommand(CMD_BACK);
 		lstTMAccounts.setCommandListener(this);
-
 		int selectedAccount = -1;
 		try {
-			for (int i = 0; i < accounts.size(); i++) {
-				String account = (String)accounts.elementAt(i);
+			for (int i = 0; i < setting.tm_accounts.size(); i++) {
+				String account = (String)setting.tm_accounts.elementAt(i);
 				lstTMAccounts.append(account, null);
-				if (account.compareTo(selected_account) == 0) {
+				if (account.compareTo(setting.selected_tm_account) == 0) {
 					selectedAccount = i;
 				}
 			}
@@ -1729,8 +1729,8 @@ public class SMS extends MIDlet implements CommandListener {
 			int selIndex = lstTMAccounts.getSelectedIndex();
                         setting.Write();
 			if (selIndex != -1 ) {
-				selected_tm_account = lstTMAccounts.getString(selIndex);
-                                setting.selected_tm_account = selected_tm_account;
+				setting.selected_tm_account = lstTMAccounts.getString(selIndex);
+                                setting.Write();
 				if (sendAfterTzonesSelect) {
                                     send_retry = true;
                                     sendSMS(sendWay);
@@ -1753,12 +1753,7 @@ public class SMS extends MIDlet implements CommandListener {
                 }
                 else if (c == CMD_TZONESSELECT) {
                     prevDisplay = display.getCurrent();
-                    Vector varStore = Global.LoadVariablesFromString(setting.tm_accounts, false);
-                    Vector accounts = new Vector();
-                    for (int i = 0; i < setting.num_tm_accounts; i++) {
-					accounts.addElement(Global.LoadStringFromVariablesStore(varStore, "tm_account" + i, ""));
-				}
-                    showSelectTMAccount(accounts, Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", ""));
+                    showSelectTMAccount();
                 }
                 
 	}
