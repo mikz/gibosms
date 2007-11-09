@@ -34,6 +34,10 @@ public class Setting {
 	public boolean SWdelPaid = false;
 	public boolean SWdelMemail = false;
 	public int titleVarK = 10;
+        public int num_tm_accounts = 0;
+        public String tm_accounts = "";
+        public String selected_tm_account = "";
+        
         
 	public void Load() {
 		Vector varStore = Global.LoadVariablesFromFile(settingFile, true);
@@ -71,46 +75,52 @@ public class Setting {
 			SWdelMemail = Global.LoadIntFromVariablesStore(varStore, "SWdelMemail", 0) != 0;
                       
 			titleVarK = Global.LoadIntFromVariablesStore(varStore, "titleVarK", 10);
+                        
+                        num_tm_accounts = Global.LoadIntFromVariablesStore(varStore, "num_tm_accounts", 0);
+                        selected_tm_account = Global.LoadStringFromVariablesStore(varStore, "selected_tm_account", "");
+                        tm_accounts = Global.LoadStringFromVariablesStore(varStore, "tm_accounts", "");
 		}
 	}
 
 	public boolean Write() {
 		Vector varStore = new Vector();
 
-		Global.WriteStringToVariablesStore(varStore, "srcNum", srcNum, true);
-		Global.WriteStringToVariablesStore(varStore, "pwd", pwd, true);
-		Global.WriteStringToVariablesStore(varStore, "sign", sign, true);
-		Global.WriteIntToVariablesStore(varStore, "useInternalPhonebook", useInternalPhonebook ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "confirmReceiver", confirmReceiver ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "animateSmile", animateSmile ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "allowSounds", allowSounds ? 1 : 0, true);
-		Global.WriteStringToVariablesStore(varStore, "email", email, true);
-		Global.WriteIntToVariablesStore(varStore, "msgsReadPage", msgsReadPage, true);
-		Global.WriteStringToVariablesStore(varStore, "msgsReadPassword", msgsReadPassword, true);
-		Global.WriteIntToVariablesStore(varStore, "msgsReadRememberPassword", msgsReadRememberPassword ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "expertMode", expertMode ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "clearDiacritics", clearDiacritics ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "capitalizeSentences", capitalizeSentences ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "showCounter", showCounter ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "quitOnSuccessfullSend", quitOnSuccessfullSend ? 1 : 0, true);
+		Global.WriteStringToVariablesStore(varStore, "srcNum", srcNum, false);
+		Global.WriteStringToVariablesStore(varStore, "pwd", pwd, false);
+		Global.WriteStringToVariablesStore(varStore, "sign", sign, false);
+		Global.WriteIntToVariablesStore(varStore, "useInternalPhonebook", useInternalPhonebook ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "confirmReceiver", confirmReceiver ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "animateSmile", animateSmile ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "allowSounds", allowSounds ? 1 : 0, false);
+		Global.WriteStringToVariablesStore(varStore, "email", email, false);
+		Global.WriteIntToVariablesStore(varStore, "msgsReadPage", msgsReadPage, false);
+		Global.WriteStringToVariablesStore(varStore, "msgsReadPassword", msgsReadPassword, false);
+		Global.WriteIntToVariablesStore(varStore, "msgsReadRememberPassword", msgsReadRememberPassword ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "expertMode", expertMode ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "clearDiacritics", clearDiacritics ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "capitalizeSentences", capitalizeSentences ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "showCounter", showCounter ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "quitOnSuccessfullSend", quitOnSuccessfullSend ? 1 : 0, false);
 
-		Global.WriteStringToVariablesStore(varStore, "lastDestNum", lastDestNum, true);
-		Global.WriteStringToVariablesStore(varStore, "lastDestEmail", lastDestEmail, true);
-		Global.WriteIntToVariablesStore(varStore, "nSentMessages", nSentMessages, true);
-		Global.WriteIntToVariablesStore(varStore, "lastSendWay", lastSendWay, true);
-		Global.WriteStringToVariablesStore(varStore, "msg", msg, true);
+		Global.WriteStringToVariablesStore(varStore, "lastDestNum", lastDestNum, false);
+		Global.WriteStringToVariablesStore(varStore, "lastDestEmail", lastDestEmail, false);
+		Global.WriteIntToVariablesStore(varStore, "nSentMessages", nSentMessages, false);
+		Global.WriteIntToVariablesStore(varStore, "lastSendWay", lastSendWay, false);
+		Global.WriteStringToVariablesStore(varStore, "msg", msg, false);
 
-                Global.WriteIntToVariablesStore(varStore, "holdGPRS", holdGPRS ? 1 : 0, true);
-                Global.WriteStringToVariablesStore(varStore, "title", title, true);
+                Global.WriteIntToVariablesStore(varStore, "holdGPRS", holdGPRS ? 1 : 0, false);
+                Global.WriteStringToVariablesStore(varStore, "title", title, false);
 		
-		Global.WriteIntToVariablesStore(varStore, "SWdelEmail", SWdelEmail ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "SWdelGibo", SWdelGibo ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "SWdelNorm", SWdelNorm ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "SWdelPaid", SWdelPaid ? 1 : 0, true);
-		Global.WriteIntToVariablesStore(varStore, "SWdelMemail", SWdelMemail ? 1 : 0, true);
+		Global.WriteIntToVariablesStore(varStore, "SWdelEmail", SWdelEmail ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "SWdelGibo", SWdelGibo ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "SWdelNorm", SWdelNorm ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "SWdelPaid", SWdelPaid ? 1 : 0, false);
+		Global.WriteIntToVariablesStore(varStore, "SWdelMemail", SWdelMemail ? 1 : 0, false);
 		
-		Global.WriteIntToVariablesStore(varStore, "titleVarK", titleVarK, true);
-		
+		Global.WriteIntToVariablesStore(varStore, "titleVarK", titleVarK, false);
+		Global.WriteStringToVariablesStore(varStore, "tm_accounts", tm_accounts, false);
+                Global.WriteStringToVariablesStore(varStore, "selected_tm_account", selected_tm_account, false);
+                Global.WriteIntToVariablesStore(varStore, "num_tm_accounts", num_tm_accounts, false);
 		return Global.WriteVariablesToFile(varStore, settingFile);
 	}
 }

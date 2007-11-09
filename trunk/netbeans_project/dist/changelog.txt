@@ -1,7 +1,13 @@
+v2.15:
+ - opraveny memory leaky v nastavení poèítadla zpráv, zrychlení celého procesu
+ - pøidáno nastavení t-zones úètu ( pøed odesláním a v pokroèilém nastavení )
+ - upraveno ukladani nastaveni, melo by to opravit par necekanych bugu :)
+
 v2.14:
  - pøidáno pokroèilé nastavení
  - pøidána možnost odebrání zpùzobù odeslání
  - pøidána možnost nastavení max. hodnoty krácené promìnné v poèítadle znakù (Vpk, Vzk ...)
+ 
 v2.13:
  - pøidána volba do menu pøi psaní zprávy - minimalizace
  - pøidáno uživatelské nastavení poèítadla znakù
