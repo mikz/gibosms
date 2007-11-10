@@ -1342,6 +1342,12 @@ public class SMS extends MIDlet implements CommandListener {
 				display.setCurrent(frmSetting);
                         }else if (isShown(lstTMAccounts)) {
                                 setting.selected_tm_account = "";
+                                try {
+                                        lstPhonebook.setTitle("Adresáø");
+                                    }
+                                    catch(Exception e) {
+                                        System.out.println(e.toString());
+                                    }
                                 display.setCurrent(prevDisplay);
 			}else if (isShown(frmAdvSetting)) {
 				display.setCurrent(frmSetting);
@@ -1740,6 +1746,12 @@ public class SMS extends MIDlet implements CommandListener {
                                     sendSMS(sendWay);
                                 }
                                 else {
+                                    try {
+                                        lstPhonebook.setTitle("Adresáø | TZones: " + setting.selected_tm_account);
+                                    }
+                                    catch(Exception e) {
+                                        System.out.println(e.toString());
+                                    }
                                     display.setCurrent(prevDisplay);
                                 }
 			}
