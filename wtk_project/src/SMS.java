@@ -779,6 +779,9 @@ public class SMS extends MIDlet implements CommandListener {
 	protected void showPhonebook(String receiver, boolean inMainMenu) {
 		pbInMainMenu = inMainMenu;
 		lstPhonebook = new List("Adresáø", List.IMPLICIT);
+                if(setting.selected_tm_account != "") {
+                    lstPhonebook.setTitle("Adresáø | TZones: " + setting.selected_tm_account);
+                }
 		if (!pbInMainMenu) {
 			lstPhonebook.addCommand(CMD_SEND);
 			lstPhonebook.addCommand(CMD_MANUALINSERT);
@@ -786,6 +789,7 @@ public class SMS extends MIDlet implements CommandListener {
 			lstPhonebook.addCommand(CMD_INSERTNUMBER);
 			lstPhonebook.addCommand(CMD_INSERTEMAIL);
 		}
+                
 		lstPhonebook.addCommand(CMD_ADD);
 		lstPhonebook.addCommand(CMD_EDIT);
 		lstPhonebook.addCommand(CMD_DELETE);
