@@ -780,7 +780,7 @@ public class SMS extends MIDlet implements CommandListener {
 		pbInMainMenu = inMainMenu;
 		lstPhonebook = new List("Adresáø", List.IMPLICIT);
                 if(setting.selected_tm_account != "") {
-                    lstPhonebook.setTitle("Adresáø | TZones: " + setting.selected_tm_account);
+                    lstPhonebook.setTitle("Adresáø | " + setting.selected_tm_account);
                 }
 		if (!pbInMainMenu) {
 			lstPhonebook.addCommand(CMD_SEND);
