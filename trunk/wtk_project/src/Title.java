@@ -62,12 +62,18 @@ public class Title {
     {
         Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         cal.setTime(new Date());
-        return (cal.get(Calendar.HOUR_OF_DAY) <= 9)?"0":"" + cal.get(Calendar.HOUR_OF_DAY);
+        String ret = "";
+        if (cal.get(Calendar.HOUR_OF_DAY) < 10) ret += "0";
+        ret += cal.get(Calendar.HOUR_OF_DAY);
+        return ret;
     }
     public String M() {
         Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         cal.setTime(new Date());
-        return (cal.get(Calendar.MINUTE) <= 9)?"0":"" + cal.get(Calendar.MINUTE);
+        String ret = "";
+        if (cal.get(Calendar.MINUTE) < 10) ret += "0";
+        ret += cal.get(Calendar.MINUTE);
+        return ret;
     }
     public String D() {
         Calendar cal = Calendar.getInstance(TimeZone.getDefault());
