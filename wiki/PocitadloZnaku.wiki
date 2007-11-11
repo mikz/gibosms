@@ -22,3 +22,6 @@ Je možné použít tyto proměnné:
 	* Tp
 	* Nc
 	* Nz
+	* D     - datum
+	* H     - hodina
+	* M     - minuta
