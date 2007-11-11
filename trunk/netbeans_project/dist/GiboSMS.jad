@@ -1,7 +1,7 @@
 MIDlet-1: SMS, /pics/SMS.png, SMS
 MIDlet-Description: Odesila SMS pres internetove SMS brany
 MIDlet-Info-URL: http://www.gibosms.cz
-MIDlet-Jar-Size: 63219
+MIDlet-Jar-Size: 63609
 MIDlet-Jar-URL: GiboSMS.jar
 MIDlet-Name: Gibo SMS mod
 MIDlet-Permissions: javax.microedition.io.Connector.http

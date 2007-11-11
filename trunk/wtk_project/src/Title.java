@@ -58,6 +58,22 @@ public class Title {
     {
 	return String.valueOf( this.writtenChars);
     }
+    public String H()
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        return cal.get(Calendar.HOUR_OF_DAY) + "";
+    }
+    public String M() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        return (cal.get(Calendar.MINUTE) < 1)?"0":"" + cal.get(Calendar.MINUTE);
+    }
+    public String D() {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        return cal.get(Calendar.MONTH) + "." + cal.get(Calendar.DAY_OF_MONTH);
+    }
     
     public String variable(String variable)
     {
@@ -164,6 +180,19 @@ public class Title {
                                                     break;
                                             }
                                             break;
+                                         case 'H':
+                                            buff += H();
+                                            i++;
+                                            break;
+                                         case 'M':
+                                            buff += M();
+                                            i++;
+                                            break;
+                                         case 'D':
+                                            buff += D();
+                                            i++;
+                                            break;
+					
 					default:
 					    buff += variable.charAt(i);
 					    break;
