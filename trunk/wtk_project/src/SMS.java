@@ -386,11 +386,17 @@ public class SMS extends MIDlet implements CommandListener {
 				}
                                 setting.tm_accounts = accounts;
                                 setting.num_tm_accounts = accounts.size();
-                                sendAfterTzonesSelect = false;
+                                
                                 setting.Write();
-                                showSelectTMAccount();
+                                
 			}
-                
+                else {
+                    setting.tm_accounts = new Vector();
+                    setting.num_tm_accounts = 0;
+                    setting.selected_tm_account = "";
+                }
+                sendAfterTzonesSelect = false;
+                showSelectTMAccount();
             }
         }
 	class CPhonebookImportReadData extends Thread {
@@ -508,6 +514,7 @@ public class SMS extends MIDlet implements CommandListener {
                 System.out.println("loading phonebook");
 		phonebook.Load();
                 System.out.println("loading counter");
+   
 		// set tmer for diplaying number of already written letters
 		if (setting.showCounter) {
 			tCounter = new Timer();

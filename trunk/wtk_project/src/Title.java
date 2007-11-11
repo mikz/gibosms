@@ -60,19 +60,19 @@ public class Title {
     }
     public String H()
     {
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         cal.setTime(new Date());
-        return cal.get(Calendar.HOUR_OF_DAY) + "";
+        return (cal.get(Calendar.HOUR_OF_DAY) <= 9)?"0":"" + cal.get(Calendar.HOUR_OF_DAY);
     }
     public String M() {
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         cal.setTime(new Date());
-        return (cal.get(Calendar.MINUTE) < 1)?"0":"" + cal.get(Calendar.MINUTE);
+        return (cal.get(Calendar.MINUTE) <= 9)?"0":"" + cal.get(Calendar.MINUTE);
     }
     public String D() {
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         cal.setTime(new Date());
-        return cal.get(Calendar.MONTH) + "." + cal.get(Calendar.DAY_OF_MONTH);
+        return cal.get(Calendar.DAY_OF_MONTH) + "." + (cal.get(Calendar.MONTH) + 1);
     }
     
     public String variable(String variable)
