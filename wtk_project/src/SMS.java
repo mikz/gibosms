@@ -1754,7 +1754,7 @@ public class SMS extends MIDlet implements CommandListener {
                                 }
                                 else {
                                     try {
-                                        lstPhonebook.setTitle("Adresáø | TZones: " + setting.selected_tm_account);
+                                        lstPhonebook.setTitle("Adresáø | " + setting.selected_tm_account);
                                     }
                                     catch(Exception e) {
                                         System.out.println(e.toString());
