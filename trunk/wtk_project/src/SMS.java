@@ -129,7 +129,7 @@ public class SMS extends MIDlet implements CommandListener {
         private final static Command CMD_TZONESLOAD = new Command("Naèíst T-Zones úèty", Command.ITEM, 3);
         private Form mini = null;
         private boolean sendAfterTzonesSelect = false;
-
+        
 	public SMS() {
 		display = Display.getDisplay(this);
 	}
@@ -139,6 +139,10 @@ public class SMS extends MIDlet implements CommandListener {
                 private Title title = new Title();
 		public void run() {
 			if (isShown(ctrlMessage)) {
+                                if(sett != setting.title) {
+                                    title = new Title();
+                                    sett = setting.title;
+                                }
                             
 				//ctrlMessage.setTitle(String.valueOf(writtenChars) + "/" + String.valueOf(ctrlMessage.getMaxSize() - ctrlMessage.getString().length()) + " " + String.valueOf(partsV) + ":" + (vodafone_chars*partsV - writtenChars)+ "/" + String.valueOf(partsO) + ":" + (o2_chars*partsO - writtenChars));
                                 ctrlMessage.setTitle(title.parse(ctrlMessage.getString().length(),ctrlMessage.getMaxSize()));
@@ -506,7 +510,7 @@ public class SMS extends MIDlet implements CommandListener {
 	}
 
 	protected void startApp() {
-            if(!initialized)
+                if(!initialized)
             {
                 initialized = true;
                 System.out.println("loading seddings");
