@@ -1,0 +1,730 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Czech resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
+#ifdef _WIN32
+LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_SETTING DIALOG DISCARDABLE  0, 0, 110, 231
+STYLE WS_POPUP | WS_VSCROLL
+FONT 8, "System"
+BEGIN
+    EDITTEXT        IDC_EDIT_SRCNUM,5,15,89,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_PASSWORD,5,42,89,12,ES_PASSWORD | 
+                    ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SIGN,5,67,89,12,ES_AUTOHSCROLL
+    CONTROL         "Ano",IDC_CHECK_CONFIRMRECEIVER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,93,29,10
+    CONTROL         "Ano",IDC_CHECK_ALLOWSOUNDS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,115,29,10
+    CONTROL         "Ano",IDC_CHECK_QUITONSUCCESSFULLSEND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,146,29,10
+    CONTROL         "Ano",IDC_CHECK_EXPERTMODE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,168,29,10
+    EDITTEXT        IDC_EDIT_MSGSREADPAGE,5,190,89,12,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    EDITTEXT        IDC_EDIT_EMAIL,5,214,89,12,ES_AUTOHSCROLL
+    LTEXT           "Vaše èíslo:",IDC_STATIC,5,5,89,8
+    LTEXT           "Pøipojovat podpis:",IDC_STATIC,5,58,89,8
+    LTEXT           "Potvrzovat pøed odesláním",IDC_STATIC,5,83,89,9
+    LTEXT           "Váš email:",IDC_STATIC,5,205,89,8
+    LTEXT           "Vaše heslo:",IDC_STATIC,5,31,89,8
+    LTEXT           "Povolit zvuky",IDC_STATIC,5,105,89,9
+    LTEXT           "Ukonèit aplikaci za 60 s pøi úspìšném odeslání",
+                    IDC_STATIC,5,128,89,16
+    LTEXT           "Zpráv na stránku pøi ètení",IDC_STATIC,5,181,89,8
+    LTEXT           "Expertní mode",IDC_STATIC,5,158,89,9
+END
+
+IDD_CONTACT DIALOG DISCARDABLE  0, 0, 110, 89
+STYLE WS_POPUP | WS_VSCROLL
+FONT 8, "System"
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,5,15,89,12,ES_AUTOHSCROLL
+    LTEXT           "Jméno:",-1,5,5,89,8
+    EDITTEXT        IDC_EDIT_NUMBER,5,41,89,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Èíslo:",-1,5,32,89,8
+    EDITTEXT        IDC_EDIT_EMAIL,5,68,89,12,ES_AUTOHSCROLL
+    LTEXT           "Email:",-1,5,59,89,8
+END
+
+IDD_STATUS DIALOG DISCARDABLE  0, 0, 110, 90
+STYLE WS_POPUP | WS_VSCROLL
+FONT 8, "System"
+BEGIN
+    CONTROL         "",IDC_STATIC_STATUSPIC,"Static",SS_BITMAP | 
+                    SS_CENTERIMAGE,31,36,19,17
+    LTEXT           "Static",IDC_STATIC_STATUS,5,6,19,8
+END
+
+IDD_EMAILSUBJECT DIALOG DISCARDABLE  0, 0, 110, 47
+STYLE WS_POPUP
+FONT 8, "System"
+BEGIN
+    EDITTEXT        IDC_EDIT_SUBJECT,5,16,90,12,ES_AUTOHSCROLL
+    LTEXT           "Pøedmìt E-mailu:",-1,5,5,90,8
+END
+
+IDD_PASSWORD DIALOG DISCARDABLE  0, 0, 110, 52
+STYLE WS_POPUP
+FONT 8, "System"
+BEGIN
+    EDITTEXT        IDC_EDIT_PASSWORD,5,16,90,12,ES_AUTOHSCROLL
+    LTEXT           "Heslo:",-1,5,5,90,8
+    CONTROL         "Pamatovat heslo",IDC_CHECK_REMEMBER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,34,69,10
+END
+
+IDD_JUMPOVER DIALOG DISCARDABLE  0, 0, 110, 64
+STYLE WS_POPUP
+FONT 8, "System"
+BEGIN
+    EDITTEXT        IDC_EDIT_STEP,5,16,90,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_PAGESIZE,5,45,90,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Pøesunout se o:",-1,5,5,90,8
+    LTEXT           "Zpráv na stránku:",-1,5,34,90,8
+END
+
+IDD_SEARCH DIALOG DISCARDABLE  0, 0, 110, 129
+STYLE WS_POPUP | WS_VSCROLL
+FONT 8, "System"
+BEGIN
+    EDITTEXT        IDC_EDIT_CONTACT,5,16,90,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TEXT,5,45,90,12,ES_AUTOHSCROLL
+    LTEXT           "Jméno nebo èíslo:",-1,5,5,90,8
+    LTEXT           "Text:",-1,5,34,90,8
+    CONTROL         "DateTimePicker1",IDC_DATETIME_OD,"SysDateTimePick32",
+                    WS_TABSTOP,5,75,90,15
+    LTEXT           "Datum od:",-1,5,64,90,8
+    CONTROL         "DateTimePicker1",IDC_DATETIME_DO,"SysDateTimePick32",
+                    WS_TABSTOP,5,106,90,15
+    LTEXT           "Datum do:",-1,5,95,90,8
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_SETTING, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 94
+    END
+
+    IDD_CONTACT, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 94
+    END
+
+    IDD_STATUS, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 94
+    END
+
+    IDD_EMAILSUBJECT, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 95
+    END
+
+    IDD_PASSWORD, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 95
+    END
+
+    IDD_JUMPOVER, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 95
+    END
+
+    IDD_SEARCH, DIALOG
+    BEGIN
+        VERTGUIDE, 5
+        VERTGUIDE, 95
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menubar
+//
+
+IDR_MENU_MAIN MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Poslat",                      IDM_POSLAT
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Smajlík...",                  IDM_MOZNOSTI_SMAJLIK
+        MENUITEM "Vymazat mezery",              IDM_MOZNOSTI_VYMAZATMEZERY
+        MENUITEM "Vymazat text",                IDM_MOZNOSTI_VYMAZATTEXT
+        MENUITEM "Vrátit text",                 IDM_MOZNOSTI_VRATITTEXT
+        MENUITEM "Ètení zpráv",                 IDM_MOZNOSTI_CTENIZPRAV
+        MENUITEM "Informace",                   IDM_MOZNOSTI_INFORMACE
+        MENUITEM "Adresáø...",                  IDM_MOZNOSTI_ADRESAR
+        MENUITEM "Nastavení",                   IDM_MOZNOSTI_NASTAVENI
+        MENUITEM "Konec",                       IDM_MOZNOSTI_KONEC
+    END
+END
+
+IDR_MENU_WAIT MENU DISCARDABLE 
+BEGIN
+    MENUITEM " ",                           ID_MENUITEM40031
+    MENUITEM "Pøerušit",                    IDM_PRERUSIT
+END
+
+IDR_MENU_NONE MENU DISCARDABLE 
+BEGIN
+    MENUITEM " ",                           ID_MENUITEM40025
+    MENUITEM "",                            ID_MENUITEM40028
+END
+
+IDR_MENU_ADDRESSBOOK_SEND MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Poslat",                      IDM_MOZNOSTI_POSLAT
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Adresáø telefonu",            IDM_MOZNOSTI_ADRESARTELEFONU
+        MENUITEM "Adresáø aplikace",            IDM_MOZNOSTI_ADRESARAPLIKACE
+        MENUITEM "Pøidat",                      IDM_MOZNOSTI_PRIDAT
+        MENUITEM "Upravit",                     IDM_MOZNOSTI_UPRAVIT
+        MENUITEM "Smazat",                      IDM_MOZNOSTI_SMAZAT
+        MENUITEM "Smazat vše",                  IDM_MOZNOSTI_SMAZATVSE
+        MENUITEM "Import...",                   IDM_MOZNOSTI_IMPORT
+        MENUITEM "Export...",                   IDM_MOZNOSTI_EXPORT
+        MENUITEM "Zpìt",                        IDM_ZPET
+    END
+END
+
+IDR_MENU_ADDRESSBOOK_SHOW MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Vložit èíslo...",             IDM_MOZNOSTI_VLOZITCISLO
+        MENUITEM "Vložit email...",             IDM_MOZNOSTI_VLOZITEMAIL
+        MENUITEM "Pøidat",                      IDM_MOZNOSTI_PRIDAT
+        MENUITEM "Upravit",                     IDM_MOZNOSTI_UPRAVIT
+        MENUITEM "Smazat",                      IDM_MOZNOSTI_SMAZAT
+        MENUITEM "Smazat vše",                  IDM_MOZNOSTI_SMAZATVSE
+        MENUITEM "Import...",                   IDM_MOZNOSTI_IMPORT
+        MENUITEM "Export...",                   IDM_MOZNOSTI_EXPORT
+    END
+END
+
+IDR_MENU_SETTING MENU DISCARDABLE 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_CONTACT MENU DISCARDABLE 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_INSERTSMILEY MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDCANCEL
+    MENUITEM "Vložit",                      IDOK
+END
+
+IDR_MENU_INFORMATION MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+END
+
+IDR_MENU_EMAILSUBJECT MENU DISCARDABLE 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_IMPORTPHONEBOOK MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+END
+
+IDR_MENUBAR1 MENU DISCARDABLE 
+BEGIN
+    MENUITEM "x",                           IDM_MOZNOSTI_KONEC
+END
+
+IDR_MENU_STATUS_BACKEND MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Konec",                       IDM_KONEC
+END
+
+IDR_MENU_STATUS_NEWMSGEND MENU DISCARDABLE 
+BEGIN
+    POPUP "Nová zpráva"
+    BEGIN
+        MENUITEM "Prázdná",                     IDM_NOVAZPRAVA_PRAZDNA
+        MENUITEM "Pøedchozí",                   IDM_NOVAZPRAVA_PREDCHOZI
+    END
+    MENUITEM "Konec",                       IDM_KONEC
+END
+
+IDR_MENU_STATUS_REPEATBACKEND MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Opakovat",                    IDM_OPAKOVAT
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Zpìt",                        IDM_ZPET
+        MENUITEM "Konec",                       IDM_KONEC
+    END
+END
+
+IDR_MENU_SENDWAY MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+    MENUITEM "Zpìt",                        IDM_ZPET
+END
+
+IDR_MENU_LSTMSGSREAD MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+END
+
+IDR_MENU_STATUS_MSGSREAD MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Další zprávy",                IDM_MOZNOSTI_DALSIZPRAVY
+        MENUITEM "Pøedchozí zprávy",            IDM_MOZNOSTI_PREDCHOZIZPRAVY
+        MENUITEM "Pøesunout se o...",           IDM_MOZNOSTI_PRESUNOUTSEO
+        MENUITEM "Vyhledat",                    IDM_MOZNOSTI_VYHLEDAT
+        MENUITEM "Zkopírovat první zprávu",     IDM_MOZNOSTI_ZKOPIROVATPRVNIZPRAVU
+
+        MENUITEM "Zkopírovat vše",              IDM_MOZNOSTI_ZKOPIROVATVSE
+        MENUITEM "Obnovit",                     IDM_MOZNOSTI_OBNOVIT
+    END
+END
+
+IDR_MENU_PASSWORD MENU DISCARDABLE 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_JUMPOVER MENU DISCARDABLE 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Dopøedu",                     IDM_MOZNOSTI_DOPREDU
+        MENUITEM "Dozadu",                      IDM_MOZNOSTI_DOZADU
+    END
+END
+
+IDR_MENU_SEARCH MENU DISCARDABLE 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_ENTERPICTOGRAM MENU DISCARDABLE 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Zpìt",                        IDM_ZPET
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Data
+//
+
+IDR_MENU_MAIN SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_MAIN, 2,
+    I_IMAGENONE, IDM_POSLAT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_POSLAT, 0, NOMENU,
+    I_IMAGENONE, ID_MOZNOSTI, TBSTATE_ENABLED, 
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDS_CAP_MOZNOSTI, 0, 1,
+END
+
+IDR_MENU_WAIT SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_WAIT, 2,
+    I_IMAGENONE, ID_MENUITEM40031, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_MENUITEM40032, 0, NOMENU,
+    I_IMAGENONE, IDM_PRERUSIT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_PERUIT, 0, NOMENU,
+END
+
+IDR_MENU_NONE SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_NONE, 2,
+    I_IMAGENONE, ID_MENUITEM40025, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_MENUITEM40026, 0, NOMENU,
+    I_IMAGENONE, ID_MENUITEM40028, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_MENUITEM40029, 0, NOMENU,
+END
+
+IDR_MENU_ADDRESSBOOK_SEND SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_ADDRESSBOOK_SEND, 2,
+    I_IMAGENONE, IDM_MOZNOSTI_POSLAT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_POSLAT, 0, NOMENU,
+    I_IMAGENONE, IDM_MOZNOSTI, TBSTATE_ENABLED, 
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDS_CAP_MOZNOSTI, 0, 1,
+END
+
+IDR_MENU_ADDRESSBOOK_SHOW SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_ADDRESSBOOK_SHOW, 2,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPET, 
+    0, NOMENU,
+    I_IMAGENONE, IDM_MOZNOSTI, TBSTATE_ENABLED, 
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDS_CAP_MOZNOSTI, 0, 1,
+END
+
+IDR_MENU_SETTING SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_SETTING, 2,
+    I_IMAGENONE, IDOK, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_OK, 0, 
+    NOMENU,
+    I_IMAGENONE, IDCANCEL, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_CANCEL, 
+    0, NOMENU,
+END
+
+IDR_MENU_CONTACT SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_CONTACT, 2,
+    I_IMAGENONE, IDOK, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_OK, 0, 
+    NOMENU,
+    I_IMAGENONE, IDCANCEL, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_CANCEL, 
+    0, NOMENU,
+END
+
+IDR_MENU_INSERTSMILEY SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_INSERTSMILEY, 2,
+    I_IMAGENONE, IDCANCEL, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPT, 0, 
+    NOMENU,
+    I_IMAGENONE, IDOK, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_VLOIT, 0, 
+    NOMENU,
+END
+
+IDR_MENU_INFORMATION SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_INFORMATION, 2,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPT, 0, 
+    NOMENU,
+    I_IMAGENONE, IDM_VYBRAT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_VYBRAT, 0, NOMENU,
+END
+
+IDR_MENU_EMAILSUBJECT SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_EMAILSUBJECT, 2,
+    I_IMAGENONE, IDOK, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_OK, 0, 
+    NOMENU,
+    I_IMAGENONE, IDCANCEL, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_CANCEL, 
+    0, NOMENU,
+END
+
+IDR_MENU_IMPORTPHONEBOOK SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_IMPORTPHONEBOOK, 2,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPT, 0, 
+    NOMENU,
+    I_IMAGENONE, IDM_VYBRAT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_VYBRAT, 0, NOMENU,
+END
+
+IDR_MENUBAR1 SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENUBAR1, 1,
+    I_IMAGENONE, IDM_MOZNOSTI_KONEC, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_X, 0, NOMENU,
+END
+
+IDR_MENU_STATUS_BACKEND SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_STATUS_BACKEND, 2,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPT, 0, 
+    NOMENU,
+    I_IMAGENONE, IDM_KONEC, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_KONEC, 
+    0, NOMENU,
+END
+
+IDR_MENU_STATUS_NEWMSGEND SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_STATUS_NEWMSGEND, 2,
+    I_IMAGENONE, ID_NOVAZPRAVA, TBSTATE_ENABLED, 
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDS_CAP_NOVAZPRAVA, 0, 0,
+    I_IMAGENONE, IDM_KONEC, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_KONEC, 
+    0, NOMENU,
+END
+
+IDR_MENU_STATUS_REPEATBACKEND SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_STATUS_REPEATBACKEND, 2,
+    I_IMAGENONE, IDM_OPAKOVAT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_OPAKOVAT, 0, NOMENU,
+    I_IMAGENONE, ID_MOZNOSTI, TBSTATE_ENABLED, 
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDS_CAP_MOZNOSTI, 0, 1,
+END
+
+IDR_MENU_SENDWAY SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_SENDWAY, 2,
+    I_IMAGENONE, IDM_VYBRAT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_VYBRAT, 0, NOMENU,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPT, 0, 
+    NOMENU,
+END
+
+IDR_MENU_LSTMSGSREAD SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_LSTMSGSREAD, 2,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPT, 0, 
+    NOMENU,
+    I_IMAGENONE, IDM_VYBRAT, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, 
+    IDS_CAP_VYBRAT, 0, NOMENU,
+END
+
+IDR_MENU_STATUS_MSGSREAD SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_STATUS_MSGSREAD, 2,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPET, 
+    0, NOMENU,
+    I_IMAGENONE, IDM_MOZNOSTI, TBSTATE_ENABLED, 
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDS_CAP_MOZNOSTI, 0, 1,
+END
+
+IDR_MENU_PASSWORD SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_PASSWORD, 2,
+    I_IMAGENONE, IDOK, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_OK, 0, 
+    NOMENU,
+    I_IMAGENONE, IDCANCEL, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_CANCEL, 
+    0, NOMENU,
+END
+
+IDR_MENU_JUMPOVER SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_JUMPOVER, 2,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPET, 
+    0, NOMENU,
+    I_IMAGENONE, IDM_MOZNOSTI, TBSTATE_ENABLED, 
+    TBSTYLE_DROPDOWN | TBSTYLE_AUTOSIZE, IDS_CAP_MOZNOSTI, 0, 1,
+END
+
+IDR_MENU_SEARCH SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_SEARCH, 2,
+    I_IMAGENONE, IDOK, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_OK, 0, 
+    NOMENU,
+    I_IMAGENONE, IDCANCEL, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_CANCEL, 
+    0, NOMENU,
+END
+
+IDR_MENU_ENTERPICTOGRAM SHMENUBAR DISCARDABLE 
+BEGIN
+    IDR_MENU_ENTERPICTOGRAM, 2,
+    I_IMAGENONE, IDOK, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_OK, 0, 
+    NOMENU,
+    I_IMAGENONE, IDM_ZPET, TBSTATE_ENABLED, TBSTYLE_AUTOSIZE, IDS_CAP_ZPT, 0, 
+    NOMENU,
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_ERROR               BITMAP  DISCARDABLE     "res\\error.bmp"
+IDB_SMILE0              BITMAP  DISCARDABLE     "res\\smile0.bmp"
+IDB_SMILE1              BITMAP  DISCARDABLE     "res\\smile1.bmp"
+IDB_SMILE2              BITMAP  DISCARDABLE     "res\\smile2.bmp"
+IDB_SMILE3              BITMAP  DISCARDABLE     "res\\smile3.bmp"
+IDB_USER                BITMAP  DISCARDABLE     "res\\user.bmp"
+IDB_WAIT                BITMAP  DISCARDABLE     "res\\wait.bmp"
+IDB_BG                  BITMAP  DISCARDABLE     "res\\bg.bmp"
+IDB_SMILEYS             BITMAP  DISCARDABLE     "res\\smileys.bmp"
+IDB_INPUTITEM           BITMAP  DISCARDABLE     "res\\inpuitem.bmp"
+IDB_SELECTEDITEM        BITMAP  DISCARDABLE     "res\\selecteditem.bmp"
+IDB_ITEM                BITMAP  DISCARDABLE     "res\\item.bmp"
+IDB_SELECTEDEXPANDABLEITEM BITMAP  DISCARDABLE     "res\\selectedexpandableitem.bmp"
+IDB_SELECTEDINPUTITEM   BITMAP  DISCARDABLE     "res\\selectedinpuitem.bmp"
+IDB_EXPANDABLEITEM      BITMAP  DISCARDABLE     "res\\expandableitem.bmp"
+IDB_ITEMNOVINKY         BITMAP  DISCARDABLE     "res\\itemnovinky.bmp"
+IDB_ITEMVSEOBECNE       BITMAP  DISCARDABLE     "res\\itemvseobecne.bmp"
+IDB_ITEMAKTIVACE        BITMAP  DISCARDABLE     "res\\itemaktivace.bmp"
+IDB_ITEMSTATISTIKA      BITMAP  DISCARDABLE     "res\\itemstatistika.bmp"
+IDB_ITEMTM              BITMAP  DISCARDABLE     "res\\itemtm.bmp"
+IDB_ITEMOPROGRAMU       BITMAP  DISCARDABLE     "res\\itemoprogramu.bmp"
+IDB_ITEMAKTUALITY       BITMAP  DISCARDABLE     "res\\itemaktuality.bmp"
+IDB_SELECTEDITEMVSEOBECNE BITMAP  DISCARDABLE     "res\\selecteditemvseobecne.bmp"
+IDB_SELECTEDITEMNOVINKY BITMAP  DISCARDABLE     "res\\selecteditemnovinky.bmp"
+IDB_SELECTEDITEMOPROGRAMU BITMAP  DISCARDABLE     "res\\selecteditemoprogramu.bmp"
+IDB_SELECTEDITEMAKTIVACE BITMAP  DISCARDABLE     "res\\selecteditemaktivace.bmp"
+IDB_SELECTEDITEMSTATISTIKA BITMAP  DISCARDABLE     "res\\selecteditemstatistika.bmp"
+IDB_SELECTEDITEMTM      BITMAP  DISCARDABLE     "res\\selecteditemtm.bmp"
+IDB_SELECTEDITEMAKTUALITY BITMAP  DISCARDABLE     "res\\selecteditemaktuality.bmp"
+IDB_SELECTEDITEMDATA    BITMAP  DISCARDABLE     "res\\selecteditemdata.bmp"
+IDB_ITEMDATA            BITMAP  DISCARDABLE     "res\\itemdata.bmp"
+IDB_ITEMTILE            BITMAP  DISCARDABLE     "res\\itemtile.bmp"
+IDB_SELECTEDITEMTILE    BITMAP  DISCARDABLE     "res\\selecteditemtile.bmp"
+IDB_INPUTITEMTILE       BITMAP  DISCARDABLE     "res\\inpuitemtile.bmp"
+IDB_SELECTEDINPUTITEMTILE BITMAP  DISCARDABLE     "res\\selectedinpuitemtile.bmp"
+IDB_ITEMMESSAGE         BITMAP  DISCARDABLE     "res\\itemmessage.bmp"
+IDB_SELECTEDITEMMESSAGE BITMAP  DISCARDABLE     "res\\selecteditemmessage.bmp"
+IDB_ITEMEMAIL           BITMAP  DISCARDABLE     "res\\itememail.bmp"
+IDB_SELECTEDITEMEMAIL   BITMAP  DISCARDABLE     "res\\selecteditememail.bmp"
+IDB_ITEMSENTMSGS        BITMAP  DISCARDABLE     "res\\itemsentmsgs.bmp"
+IDB_ITEMRECEIVEDMSGS    BITMAP  DISCARDABLE     "res\\itemreceivedmsgs.bmp"
+IDB_ITEMMAILBOX         BITMAP  DISCARDABLE     "res\\itemmailbox.bmp"
+IDB_SELECTEDITEMRECEIVEDMSGS BITMAP  DISCARDABLE     "res\\selecteditemreceivedmsgs.bmp"
+IDB_SELECTEDITEMMAILBOX BITMAP  DISCARDABLE     "res\\selecteditemmailbox.bmp"
+IDB_SELECTEDITEMSENTMSGS BITMAP  DISCARDABLE     "res\\selecteditemsentmsgs.bmp"
+IDB_LOGO                BITMAP  DISCARDABLE     "res\\background.bmp"
+IDB_ITEMPAIDSMS         BITMAP  DISCARDABLE     "res\\itempaidsms.bmp"
+IDB_SELECTEDITEMPAIDSMS BITMAP  DISCARDABLE     "res\\selecteditempaidsms.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON                ICON    DISCARDABLE     "res\\Gibosms_multi.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDR_WAVE_ERROR          WAVE    DISCARDABLE     "res\\error.wav"
+IDR_WAVE_SUCCESS        WAVE    DISCARDABLE     "res\\success.wav"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAP_QUIT            "Poslat"
+    IDS_CAP_SEND            "Poslat"
+    IDS_CAP_MOZNOSTI        "Možnosti..."
+    IDS_CAP_POSLAT          "Poslat"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAP_PERUIT          "Pøerušit"
+    IDS_CAP_MENUITEM40026   " "
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAP_MENUITEM40032   " "
+    IDS_CAP_ZPT             "Zpìt"
+    IDS_CAP_MONOSTI         "Možnosti"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAP_ZPET            "Zpìt"
+    IDS_CAP_OK              "OK"
+    IDS_CAP_CANCEL          "Cancel"
+    IDS_CAP_VLOIT           "Vložit"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAP_VYBRAT          "Vybrat"
+    IDS_CAP_KONEC           "Konec"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_CAP_X               "x"
+    IDS_CAP_OPAKOVAT        "Opakovat"
+    IDS_CAP_NOVAZPRAVA      "Nová zpráva"
+END
+
+#endif    // Czech resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
