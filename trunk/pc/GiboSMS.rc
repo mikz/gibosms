@@ -1,0 +1,511 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Czech resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CSY)
+#ifdef _WIN32
+LANGUAGE LANG_CZECH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_GIBOSMS             ICON                    "res\\GiboSMS.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_SKIN_BACKGROUND     BITMAP                  "res\\skin_background.bmp"
+IDB_WAIT                BITMAP                  "res\\wait.bmp"
+IDB_BG                  BITMAP                  "res\\bg.bmp"
+IDB_ERROR               BITMAP                  "res\\error.bmp"
+IDB_SMILE0              BITMAP                  "res\\smile0.bmp"
+IDB_SMILE3              BITMAP                  "res\\smile3.bmp"
+IDB_SMILE1              BITMAP                  "res\\smile1.bmp"
+IDB_SMILE2              BITMAP                  "res\\smile2.bmp"
+IDB_SMILEYS             BITMAP                  "res\\smileys.bmp"
+IDB_LOGO                BITMAP                  "res\\background.bmp"
+IDB_ITEMVSEOBECNE       BITMAP                  "res\\itemvseobecne.bmp"
+IDB_EXPANDABLEITEM      BITMAP                  "res\\expandableitem.bmp"
+IDB_INPUTITEM           BITMAP                  "res\\inpuitem.bmp"
+IDB_INPUTITEMTILE       BITMAP                  "res\\inpuitemtile.bmp"
+IDB_ITEM                BITMAP                  "res\\item.bmp"
+IDB_ITEMAKTIVACE        BITMAP                  "res\\itemaktivace.bmp"
+IDB_ITEMAKTUALITY       BITMAP                  "res\\itemaktuality.bmp"
+IDB_ITEMDATA            BITMAP                  "res\\itemdata.bmp"
+IDB_ITEMEMAIL           BITMAP                  "res\\itememail.bmp"
+IDB_ITEMMAILBOX         BITMAP                  "res\\itemmailbox.bmp"
+IDB_ITEMMESSAGE         BITMAP                  "res\\itemmessage.bmp"
+IDB_ITEMNOVINKY         BITMAP                  "res\\itemnovinky.bmp"
+IDB_ITEMOPROGRAMU       BITMAP                  "res\\itemoprogramu.bmp"
+IDB_ITEMPAIDSMS         BITMAP                  "res\\itempaidsms.bmp"
+IDB_ITEMRECEIVEDMSGS    BITMAP                  "res\\itemreceivedmsgs.bmp"
+IDB_ITEMSENTMSGS        BITMAP                  "res\\itemsentmsgs.bmp"
+IDB_ITEMSTATISTIKA      BITMAP                  "res\\itemstatistika.bmp"
+IDB_ITEMTILE            BITMAP                  "res\\itemtile.bmp"
+IDB_ITEMTM              BITMAP                  "res\\itemtm.bmp"
+IDB_SELECTEDEXPANDABLEITEM BITMAP                  "res\\selectedexpandableitem.bmp"
+IDB_SELECTEDINPUTITEM   BITMAP                  "res\\selectedinpuitem.bmp"
+IDB_SELECTEDINPUTITEMTILE BITMAP                  "res\\selectedinpuitemtile.bmp"
+IDB_SELECTEDITEM        BITMAP                  "res\\selecteditem.bmp"
+IDB_SELECTEDITEMAKTIVACE BITMAP                  "res\\selecteditemaktivace.bmp"
+IDB_SELECTEDITEMAKTUALITY BITMAP                  "res\\selecteditemaktuality.bmp"
+IDB_SELECTEDITEMDATA    BITMAP                  "res\\selecteditemdata.bmp"
+IDB_SELECTEDITEMEMAIL   BITMAP                  "res\\selecteditememail.bmp"
+IDB_SELECTEDITEMMAILBOX BITMAP                  "res\\selecteditemmailbox.bmp"
+IDB_SELECTEDITEMMESSAGE BITMAP                  "res\\selecteditemmessage.bmp"
+IDB_SELECTEDITEMNOVINKY BITMAP                  "res\\selecteditemnovinky.bmp"
+IDB_SELECTEDITEMOPROGRAMU BITMAP                  "res\\selecteditemoprogramu.bmp"
+IDB_SELECTEDITEMPAIDSMS BITMAP                  "res\\selecteditempaidsms.bmp"
+IDB_SELECTEDITEMRECEIVEDMSGS BITMAP                  "res\\selecteditemreceivedmsgs.bmp"
+IDB_SELECTEDITEMSENTMSGS BITMAP                  "res\\selecteditemsentmsgs.bmp"
+IDB_SELECTEDITEMSTATISTIKA BITMAP                  "res\\selecteditemstatistika.bmp"
+IDB_SELECTEDITEMTILE    BITMAP                  "res\\selecteditemtile.bmp"
+IDB_SELECTEDITEMTM      BITMAP                  "res\\selecteditemtm.bmp"
+IDB_SELECTEDITEMVSEOBECNE BITMAP                  "res\\selecteditemvseobecne.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAIN DIALOGEX 0, 0, 186, 90
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "X",IDC_BUTTON_CLOSE,158,7,21,14
+    PUSHBUTTON      "menu left",IDC_BUTTON_MENU_LEFT,27,44,50,14
+    PUSHBUTTON      "menu right",IDC_BUTTON_MENU_RIGHT,105,44,50,14
+END
+
+IDD_CONTACT DIALOGEX 0, 0, 148, 89
+STYLE DS_SETFONT | WS_POPUP | WS_VSCROLL
+FONT 10, "Tahoma", 400, 0, 0xEE
+BEGIN
+    EDITTEXT        IDC_EDIT_NAME,5,15,128,12,ES_AUTOHSCROLL
+    LTEXT           "Jméno:",-1,5,5,128,8
+    EDITTEXT        IDC_EDIT_NUMBER,5,41,128,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Èíslo:",-1,5,32,128,8
+    EDITTEXT        IDC_EDIT_EMAIL,5,68,128,12,ES_AUTOHSCROLL
+    LTEXT           "Email:",-1,5,59,128,8
+END
+
+IDD_EMAILSUBJECT DIALOGEX 0, 0, 145, 47
+STYLE DS_SETFONT | WS_POPUP
+FONT 10, "Tahoma", 400, 0, 0xEE
+BEGIN
+    EDITTEXT        IDC_EDIT_SUBJECT,5,16,133,12,ES_AUTOHSCROLL
+    LTEXT           "Pøedmìt E-mailu:",-1,5,5,133,8
+END
+
+IDD_JUMPOVER DIALOGEX 0, 0, 145, 64
+STYLE DS_SETFONT | WS_POPUP
+FONT 10, "Tahoma", 400, 0, 0xEE
+BEGIN
+    EDITTEXT        IDC_EDIT_STEP,5,16,133,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_PAGESIZE,5,45,133,12,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "Pøesunout se o:",-1,5,5,133,8
+    LTEXT           "Zpráv na stránku:",-1,5,34,133,8
+END
+
+IDD_STATUS DIALOGEX 0, 0, 147, 90
+STYLE DS_SETFONT | WS_POPUP | WS_VSCROLL
+FONT 10, "Tahoma", 400, 0, 0xEE
+BEGIN
+    CONTROL         "",IDC_STATIC_STATUSPIC,"Static",SS_BITMAP | SS_CENTERIMAGE,31,36,19,17
+    LTEXT           "Static",IDC_STATIC_STATUS,5,6,19,8
+END
+
+IDD_SETTING DIALOGEX 0, 0, 145, 340
+STYLE DS_SETFONT | WS_CHILD | WS_VSCROLL
+FONT 10, "Tahoma", 400, 0, 0x0
+BEGIN
+    EDITTEXT        IDC_EDIT_SRCNUM,7,15,121,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_PASSWORD,5,42,123,12,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_SIGN,5,67,123,12,ES_AUTOHSCROLL
+    CONTROL         "Ano",IDC_CHECK_CONFIRMRECEIVER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,148,123,10
+    CONTROL         "Ano",IDC_CHECK_ALLOWSOUNDS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,170,123,10
+    CONTROL         "Ano",IDC_CHECK_QUITONSUCCESSFULLSEND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,201,123,10
+    CONTROL         "Ano",IDC_CHECK_EXPERTMODE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,223,123,10
+    EDITTEXT        IDC_EDIT_MSGSREADPAGE,5,245,123,12,ES_AUTOHSCROLL | ES_NUMBER
+    EDITTEXT        IDC_EDIT_EMAIL,5,269,123,12,ES_AUTOHSCROLL
+    LTEXT           "Vaše èíslo:",-1,5,5,89,8
+    LTEXT           "Pøipojovat podpis:",-1,5,58,123,8
+    LTEXT           "Potvrzovat pøed odesláním",-1,5,138,123,9
+    LTEXT           "Váš email:",-1,5,260,123,8
+    LTEXT           "Vaše heslo:",-1,5,31,123,8
+    LTEXT           "Povolit zvuky",-1,5,160,123,9
+    LTEXT           "Ukonèit aplikaci za 60 s pøi úspešném odeslání",-1,5,183,123,16
+    LTEXT           "Zpráv na stránku pøi ètení",-1,5,236,123,8
+    LTEXT           "Expertní mode",-1,5,213,123,9
+    CONTROL         "Ano",IDC_CHECK_RUNAFTERWINDOWSSTARTUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,96,123,10
+    LTEXT           "Spouštet po startu Windows",-1,7,86,123,9
+    LTEXT           "Klávesová zkratka",-1,7,110,123,8
+    CONTROL         "",IDC_HOTKEY,"msctls_hotkey32",WS_BORDER | WS_TABSTOP,7,120,80,13
+    CONTROL         "+ Win",IDC_CHECK_WINKEY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,91,122,35,10
+    LTEXT           "Skin programu",-1,7,286,123,8
+    COMBOBOX        IDC_COMBO_SKIN,7,297,121,91,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_EDIT_PROXY,7,323,123,12,ES_AUTOHSCROLL
+    LTEXT           "Proxy (user:pass@server:port)",-1,7,314,123,8
+END
+
+IDD_SEARCH DIALOGEX 0, 0, 145, 129
+STYLE DS_SETFONT | WS_POPUP | WS_VSCROLL
+FONT 10, "Tahoma", 400, 0, 0xEE
+BEGIN
+    EDITTEXT        IDC_EDIT_CONTACT,5,16,123,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TEXT,5,45,123,12,ES_AUTOHSCROLL
+    LTEXT           "Jméno nebo èíslo:",-1,5,5,123,8
+    LTEXT           "Text:",-1,5,34,123,8
+    CONTROL         "DateTimePicker1",IDC_DATETIME_OD,"SysDateTimePick32",WS_TABSTOP,5,75,123,15
+    LTEXT           "Datum od:",-1,5,64,123,8
+    CONTROL         "DateTimePicker1",IDC_DATETIME_DO,"SysDateTimePick32",WS_TABSTOP,5,106,123,15
+    LTEXT           "Datum do:",-1,5,95,123,8
+END
+
+IDD_PASSWORD DIALOGEX 0, 0, 145, 52
+STYLE DS_SETFONT | WS_POPUP
+FONT 10, "Tahoma", 400, 0, 0xEE
+BEGIN
+    EDITTEXT        IDC_EDIT_PASSWORD,5,16,133,12,ES_AUTOHSCROLL
+    LTEXT           "Heslo:",-1,5,5,133,8
+    CONTROL         "Pamatovat heslo",IDC_CHECK_REMEMBER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,34,133,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_MAIN, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_CONTACT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 133
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_EMAILSUBJECT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 7
+    END
+
+    IDD_JUMPOVER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 7
+    END
+
+    IDD_STATUS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 83
+    END
+
+    IDD_SETTING, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 128
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 335
+    END
+
+    IDD_SEARCH, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 128
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 121
+    END
+
+    IDD_PASSWORD, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 138
+        TOPMARGIN, 7
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TRAYMENU MENU 
+BEGIN
+    POPUP "Popup"
+    BEGIN
+        MENUITEM "&Otevøít Gibo SMS",           ID_POPUP_OTEVRIT
+        MENUITEM SEPARATOR
+        MENUITEM "&Konec",                      ID_POPUP_KONEC
+    END
+END
+
+IDR_MENU_MAIN MENU 
+BEGIN
+    MENUITEM "Poslat",                      IDM_POSLAT
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Smajlík...",                  IDM_MOZNOSTI_SMAJLIK
+        MENUITEM "Vymazat mezery",              IDM_MOZNOSTI_VYMAZATMEZERY
+        MENUITEM "Vymazat text",                IDM_MOZNOSTI_VYMAZATTEXT
+        MENUITEM "Vrátit text",                 IDM_MOZNOSTI_VRATITTEXT
+        MENUITEM "Ètení zpráv",                 IDM_MOZNOSTI_CTENIZPRAV
+        MENUITEM "Informace",                   IDM_MOZNOSTI_INFORMACE
+        MENUITEM "Adresáø...",                  IDM_MOZNOSTI_ADRESAR
+        MENUITEM "Nastavení",                   IDM_MOZNOSTI_NASTAVENI
+        MENUITEM "Konec",                       IDM_MOZNOSTI_KONEC
+    END
+END
+
+IDR_MENU_STATUS_NEWMSGEND MENU 
+BEGIN
+    POPUP "Nová zpráva"
+    BEGIN
+        MENUITEM "Prázdná",                     IDM_NOVAZPRAVA_PRAZDNA
+        MENUITEM "Predchozí",                   IDM_NOVAZPRAVA_PREDCHOZI
+    END
+    MENUITEM "Konec",                       IDM_KONEC
+END
+
+IDR_MENU_STATUS_MSGSREAD MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Další zprávy",                IDM_MOZNOSTI_DALSIZPRAVY
+        MENUITEM "Pøedchozí zprávy",            IDM_MOZNOSTI_PREDCHOZIZPRAVY
+        MENUITEM "Pøesunout se o...",           IDM_MOZNOSTI_PRESUNOUTSEO
+        MENUITEM "Vyhledat",                    IDM_MOZNOSTI_VYHLEDAT
+        MENUITEM "Zkopírovat první zprávu",     IDM_MOZNOSTI_ZKOPIROVATPRVNIZPRAVU
+        MENUITEM "Zkopírovat vše",              IDM_MOZNOSTI_ZKOPIROVATVSE
+        MENUITEM "Obnovit",                     IDM_MOZNOSTI_OBNOVIT
+    END
+END
+
+IDR_MENU_STATUS_BACKEND MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Konec",                       IDM_KONEC
+END
+
+IDR_MENU_STATUS_REPEATBACKEND MENU 
+BEGIN
+    MENUITEM "Opakovat",                    IDM_OPAKOVAT
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Zpìt",                        IDM_ZPET
+        MENUITEM "Konec",                       IDM_KONEC
+    END
+END
+
+IDR_MENU_WAIT MENU 
+BEGIN
+    MENUITEM " ",                           40031
+    MENUITEM "Pøerušit",                    IDM_PRERUSIT
+END
+
+IDR_MENU_ADDRESSBOOK_SEND MENU 
+BEGIN
+    MENUITEM "Poslat",                      IDM_MOZNOSTI_POSLAT
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Pøidat",                      IDM_MOZNOSTI_PRIDAT
+        MENUITEM "Upravit",                     IDM_MOZNOSTI_UPRAVIT
+        MENUITEM "Smazat",                      IDM_MOZNOSTI_SMAZAT
+        MENUITEM "Smazat vše",                  IDM_MOZNOSTI_SMAZATVSE
+        MENUITEM "Import...",                   IDM_MOZNOSTI_IMPORT
+        MENUITEM "Export...",                   IDM_MOZNOSTI_EXPORT
+        MENUITEM "Zpìt",                        IDM_ZPET
+    END
+END
+
+IDR_MENU_LSTMSGSREAD MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+END
+
+IDR_MENU_NONE MENU 
+BEGIN
+    MENUITEM " ",                           0
+END
+
+IDR_MENU_PASSWORD MENU 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_SEARCH MENU 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_SENDWAY MENU 
+BEGIN
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+    MENUITEM "Zpìt",                        IDM_ZPET
+END
+
+IDR_MENU_SETTING MENU 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_ADDRESSBOOK_SHOW MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Vložit èíslo...",             IDM_MOZNOSTI_VLOZITCISLO
+        MENUITEM "Vložit email...",             IDM_MOZNOSTI_VLOZITEMAIL
+        MENUITEM "Pridat",                      IDM_MOZNOSTI_PRIDAT
+        MENUITEM "Upravit",                     IDM_MOZNOSTI_UPRAVIT
+        MENUITEM "Smazat",                      IDM_MOZNOSTI_SMAZAT
+        MENUITEM "Smazat vše",                  IDM_MOZNOSTI_SMAZATVSE
+        MENUITEM "Import...",                   IDM_MOZNOSTI_IMPORT
+        MENUITEM "Export...",                   IDM_MOZNOSTI_EXPORT
+    END
+END
+
+IDR_MENU_CONTACT MENU 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_EMAILSUBJECT MENU 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Cancel",                      IDCANCEL
+END
+
+IDR_MENU_ENTERPICTOGRAM MENU 
+BEGIN
+    MENUITEM "OK",                          IDOK
+    MENUITEM "Zpìt",                        IDM_ZPET
+END
+
+IDR_MENU_IMPORTPHONEBOOK MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+END
+
+IDR_MENU_INFORMATION MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    MENUITEM "Vybrat",                      IDM_VYBRAT
+END
+
+IDR_MENU_INSERTSMILEY MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDCANCEL
+    MENUITEM "Vložit",                      IDOK
+END
+
+IDR_MENU_JUMPOVER MENU 
+BEGIN
+    MENUITEM "Zpìt",                        IDM_ZPET
+    POPUP "Možnosti..."
+    BEGIN
+        MENUITEM "Dopøedu",                     IDM_MOZNOSTI_DOPREDU
+        MENUITEM "Dozadu",                      IDM_MOZNOSTI_DOZADU
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// WAVE
+//
+
+IDR_WAVE_ERROR          WAVE                    "res\\error.wav"
+IDR_WAVE_SUCCESS        WAVE                    "res\\success.wav"
+#endif    // Czech resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
